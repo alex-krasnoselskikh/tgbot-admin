@@ -1,0 +1,56 @@
+﻿{
+	"Twillo" : {
+	  "Sid": "AC24dba720f479f16657c3f21328204b32",
+	  "Token": "f471fd9b94fc6b55fb6695250ca9d59f",
+	  "phoneNumber": "HKLEGENDA"
+	},
+    "BotApiKey": "452719527:AAFNPulOUrGrokMFLjsUOXlkVJWUixkTr6A",
+    "DbPath": "../Db/users.db",
+	"GoogleAppName" : "TgPayBot",
+    "spreadsheets": [
+        {
+            "id": "1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0",
+            "lists": [
+                {
+                    "listname": "А",
+                    "date": "B",
+                    "status": "AN",
+                    "isSendedColumn": "AO",
+					"messagetext": "AP",
+					"tguser": "AQ"
+                },
+                {
+                    "listname": "Н",
+                    "date": "B",
+                    "status": "H",
+                    "isSendedColumn": "I",
+					"messagetext": "J",
+					"tguser": "K"
+                },
+                {
+                    "listname": "П",
+                    "date": "B",
+                    "status": "I",
+                    "isSendedColumn": "J",
+					"MessageText": "K",
+					"tguser": "L"
+                }
+            ]
+        }
+    ],
+	"admins": ["79194729914"],
+	"spreadsheetlog": {
+		"id" : "1GqyxMT-fOw5igY38QF9Lq3x26g5YZWu8i-7B4-4oF1o",
+		"messages": "сообщения",
+		"errors": "ошибки",
+		"auths": "авторизации"
+	},
+	"sendertimeout": 3,
+	"hellomessage" : "Нажми на кнопку 'Поделиться номером телефона' внизу.",
+	"autoresponsetext": "Бот не отвечает на сообщения. Мы видим твои сообщения, но если есть вопросы, лучше задать их напрямую Соне или Андрею.",
+	"AlreadySubscribedMessage" : "Этот номер уже используется другим пользователем. Перешлите это сообщение Андрею (+7 985 151-57-26) для решения проблемы.",
+	"UserSubscribed" : "Отлично, подписка активна! Я обязательно тебе напишу, если у меня будут для тебя новости!",
+	"UserUnsubscribed" : "Ок, подписка отключена. Возвращайся! Для возвращения просто набери /start",
+	"UnsupportedMessageType" : "Бот не отвечает на сообщения. Если у тебя есть вопросы, лучше задать их напрямую Соне или Андрею.",
+	
+}
