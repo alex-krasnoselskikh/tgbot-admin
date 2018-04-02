@@ -11,6 +11,8 @@ function toJSON() {
   obj.BotApiKey = getValue('bot-api-key');
   obj.DbPath = getValue('db-path');
   obj.GoogleAppName = getValue('google-app-name');
+  //spreadsheets
+
   obj.spreadsheetlog = {
     id: getValue('log-table-id'),
     messages: getValue('messages'),
@@ -18,7 +20,7 @@ function toJSON() {
     auths: getValue('auths'),
   }
   obj.sendertimeout = getValue('sendertimeout');
-  obj.hellomessage = getValue('hellomessage');
+  obj.hellomessage = getValue('hello-message');
   obj.autoresponsetext = getValue('auto-response-text');
   obj.AlreadySubscribedMessage = getValue('already-subscribed-message');
   obj.UserSubscribed = getValue('user-subscribed');

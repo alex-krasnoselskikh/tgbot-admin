@@ -113,18 +113,61 @@
             </div>
             <hr />
           </div>
+
+          <div class="list border border-secondary w-50">
+              <div class="form-group row ml-4">
+                <label for="listname" class="col-sm-2 col-form-label">List Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="List Name" id="listname" value="АA">
+                </div>
+              </div>
+              <div class="form-group row ml-4">
+                <label for="date" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="Date" id="date" value="BB">
+                </div>
+              </div>
+              <div class="form-group row ml-4">
+                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="Status" id="status" value="ANAN">
+                </div>
+              </div>
+              <div class="form-group row ml-4">
+                <label for="is-sended-column" class="col-sm-2 col-form-label">is Sended Column</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="is Sended Column" id="is-sended-column" value="AOAO">
+                </div>
+              </div>
+              <div class="form-group row ml-4">
+                <label for="message-text" class="col-sm-2 col-form-label">Message Text</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="Message Text" id="message-text" value="APAP">
+                </div>
+              </div>
+              <div class="form-group row ml-4">
+                <label for="tg-user" class="col-sm-2 col-form-label">Tg User</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="Tg User" id="tg-user" value="APAP">
+                </div>
+              </div>
+              <hr />
+            </div>
         </div>
       </div>
     </div>
+    <!-- Admins -->
     <div class="admins">
       <h3>Admins</h3>
       <div class="col-sm-10 ml-4">
-        <button type="" class="btn btn-primary">Add New Admin</button>
+        <button type="button" class="btn btn-primary" id="add-new-admin" onclick="addNewAdmin()">Add New Admin</button>
       </div>
+      <div id="admins-to-add" class="form-group row ml-5"></div>
       <div class="form-group row ml-5">
-        <input type="text" class="form-control" name="admin-number" id="message-text" value="79194729914">
+        <input type="text" class="form-control" name="admin-number" value="79194729914">
       </div>
     </div>
+    <!-- Spredsheet Log -->
     <div class="spreadsheetlog">
       <h3>Spreadsheet Log</h3>
       <div class="form-group row ml-4">
@@ -155,6 +198,7 @@
         </div>
       </div>
     </div>
+    <!-- Rest Parameters -->
     <div class="rest-params">
       <h3>Rest Parameters</h3>
       <div class="form-group row ml-4">
@@ -164,9 +208,9 @@
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="hellomessage" class="col-sm-2 col-form-label">Hello Message</label>
+        <label for="hello-message" class="col-sm-2 col-form-label">Hello Message</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Hello Message" id="hellomessage" value="Нажми на кнопку 'Поделиться номером телефона' внизу.">
+          <input type="text" class="form-control" name="Hello Message" id="hello-message" value="Нажми на кнопку 'Поделиться номером телефона' внизу.">
         </div>
       </div>
       <div class="form-group row ml-4">
@@ -205,7 +249,9 @@
       <button type="submit" onclick="toJSON()" class="btn btn-success">Save Config</button>
     </div>
   </form>
+  <!-- Scripts -->
   <script src="./js/toJSON.js"></script>
+  <script src="./js/addNewAdmin.js"></script>
 </body>
 
 </html>
