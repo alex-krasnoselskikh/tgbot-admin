@@ -5,7 +5,14 @@ function removeAdmin(e) {
     .removeChild(e.target.parentElement.parentElement);
 }
 
-function addNewAdmin() {
+{/* <div class="form-group row ml-5 mb-3">
+  <div class="input-group-append">
+    <input type="text" class="form-control" name="admin-number" value="79194729914">
+      <button class="btn btn-outline-danger" type="button" onclick="removeAdmin(event)">X</button>
+  </div>
+</div> */}
+
+  function addNewAdmin() {
   const outerDiv = document.createElement("div");
   outerDiv.setAttribute("class", "form-group row ml-5 mb-3");
 
