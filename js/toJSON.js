@@ -12,6 +12,8 @@ function toJSON() {
   obj.DbPath = getValue('db-path');
   obj.GoogleAppName = getValue('google-app-name');
   //spreadsheets
+  // const spreadsheets = document.querySelectorAll(".spreadsheets .list");
+  // console.log(spreadsheets);
 
   obj.spreadsheetlog = {
     id: getValue('log-table-id'),

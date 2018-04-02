@@ -1,9 +1,4 @@
 function addNewAdmin() {
-{/* <div class="form-group row ml-5 mb-3">
-        <div class="input-group-append">
-          <input type="text" class="form-control" name="admin-number" value="79194729914">
-          <button class="btn btn-outline-danger" type="button">x</button>
-        </div> */}
   const outerDiv = document.createElement("div");
   outerDiv.setAttribute("class", "form-group row ml-5 mb-3");
 
@@ -20,8 +15,12 @@ function addNewAdmin() {
   const button = document.createElement("button");
   button.setAttribute("class", "btn btn-outline-danger");
   button.setAttribute("type", "button");
+  button.addEventListener("click", function(e) {
+    e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode)
+  }); // doesn't work
   const x = document.createTextNode("X");
   button.appendChild(x);
+
   innerDiv.appendChild(newInput);
   innerDiv.appendChild(button);
   
