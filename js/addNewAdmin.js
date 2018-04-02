@@ -1,15 +1,31 @@
 function addNewAdmin() {
-  // <div class="form-group row ml-5">
-  //       <input type="text" class="form-control" name="admin-number" value="79194729914">
-  //     </div>
-  const newDiv = document.createElement("div");
-  newDiv.setAttribute("class", "form-group row ml-5");
+{/* <div class="form-group row ml-5 mb-3">
+        <div class="input-group-append">
+          <input type="text" class="form-control" name="admin-number" value="79194729914">
+          <button class="btn btn-outline-danger" type="button">x</button>
+        </div> */}
+  const outerDiv = document.createElement("div");
+  outerDiv.setAttribute("class", "form-group row ml-5 mb-3");
+
+  const innerDiv = document.createElement("div");
+  innerDiv.setAttribute("class", "input-group-append");
+
   const newInput = document.createElement("input");
-  const placeBefore = document.getElementById("admins-to-add");
   newInput.setAttribute("type", "text");
-  newInput.setAttribute("class", "form-control")
+  newInput.setAttribute("class", "form-control");
   newInput.setAttribute("name", "admin-number");
-  newDiv.appendChild(newInput);
-  placeBefore.insertAdjacentElement('afterend', newDiv);
+
+  const placeBefore = document.getElementById("admins-to-add");
+  
+  const button = document.createElement("button");
+  button.setAttribute("class", "btn btn-outline-danger");
+  button.setAttribute("type", "button");
+  const x = document.createTextNode("X");
+  button.appendChild(x);
+  innerDiv.appendChild(newInput);
+  innerDiv.appendChild(button);
+  
+  outerDiv.appendChild(innerDiv);
+  placeBefore.insertAdjacentElement('afterend', outerDiv);
   console.log('added');
 }
