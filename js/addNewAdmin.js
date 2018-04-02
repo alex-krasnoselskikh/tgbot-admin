@@ -21,7 +21,7 @@ function removeAdmin(e) {
 
   const newInput = document.createElement("input");
   newInput.setAttribute("type", "text");
-  newInput.setAttribute("class", "form-control");
+  newInput.setAttribute("class", "form-control admin-number");
   newInput.setAttribute("name", "admin-number");
 
   const placeBefore = document.getElementById("admins-to-add");

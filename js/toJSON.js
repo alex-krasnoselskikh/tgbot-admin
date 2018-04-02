@@ -14,6 +14,14 @@ function toJSON() {
   //spreadsheets
   // const spreadsheets = document.querySelectorAll(".spreadsheets .list");
   // console.log(spreadsheets);
+  
+  //admins
+  const adminsNumbers = [];
+  const adminsNodes = document.querySelectorAll(".admin-number");
+  adminsNodes.forEach(node => {
+    adminsNumbers.push(node.value);
+  })
+  obj.admins = adminsNumbers;
 
   obj.spreadsheetlog = {
     id: getValue('log-table-id'),
