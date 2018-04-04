@@ -12,53 +12,56 @@
 <body>
   <h1>Management</h1>
   <form action="" id="management-form">
+    <!-- Twillo -->
     <div class="twillo">
       <h3>Twillo</h3>
       <div class="form-group row ml-4">
         <label for="sid" class="col-sm-2 col-form-label">Sid</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Sid" id="sid" value="AC24dba720f479f16657c3f21328204b32">
+          <input type="text" class="form-control" name="Twillo-Sid" id="Twillo-Sid" value="">
         </div>
       </div>
 
       <div class="form-group row ml-4">
         <label for="token" class="col-sm-2 col-form-label">Token</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Token" id="token" value="f471fd9b94fc6b55fb6695250ca9d59f">
+          <input type="text" class="form-control" name="Twillo-Token" id="Twillo-Token" value="">
         </div>
       </div>
 
       <div class="form-group row ml-4">
         <label for="phone-number" class="col-sm-2 col-form-label">Phone Number</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Phone Number" id="phone-number" value="HKLEGENDA">
+          <input type="text" class="form-control" name="Twillo-phoneNumber" id="Twillo-phoneNumber" value="">
         </div>
       </div>
+      <hr />
+    </div>
 
-      <div class="form-group row ml-4">
-        <label for="bot-api-key" class="col-sm-2 col-form-label">Bot API Key</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="Bot API Key" id="bot-api-key" value="452719527:AAFNPulOUrGrokMFLjsUOXlkVJWUixkTr6A">
-        </div>
+    <div class="form-group row ml-4">
+      <label for="bot-api-key" class="col-sm-2 col-form-label">Bot API Key</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="BotApiKey" id="BotApiKey" value="hardcode">
+      </div>
+    </div>
+
+    <div class="form-group row ml-4">
+      <label for="db-path" class="col-sm-2 col-form-label">DB Path</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="DbPath" id="DbPath" value="123">
+      </div>
+    </div>
+
+    <div class="form-group row ml-4">
+      <label for="google-app-name" class="col-sm-2 col-form-label">Google App Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="GoogleAppName" id="GoogleAppName" value="123">
       </div>
 
-      <div class="form-group row ml-4">
-        <label for="db-path" class="col-sm-2 col-form-label">DB Path</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="DB Path" id="db-path" value="../Db/users.db">
-        </div>
-      </div>
-
-      <div class="form-group row ml-4">
-        <label for="google-app-name" class="col-sm-2 col-form-label">Google App Name</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="Google App Name" id="google-app-name" value="TgPayBot">
-        </div>
-
-      </div>
     </div>
     <!-- SpreadSheets -->
     <div class="spreadsheets">
+      <!-- Spreadsheet1 -->
       <div class="spreadsheet border border-primary" id="spredsheed-1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0">
         <h3>Table 1</h3>
         <div class="col-sm-10">
@@ -68,7 +71,7 @@
         <div class="form-group row ml-4">
           <label for="speadsheet-id" class="col-sm-2 col-form-label">ID</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="ID" id="speadsheet-id" value="1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0">
+            <input type="text" class="form-control spreadsheet-input" name="ID" id="speadsheet-id" value="1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0">
           </div>
         </div>
         <!-- Lists -->
@@ -159,6 +162,20 @@
         </div>
       </div>
     </div>
+    <!-- Spreadsheet2 -->
+    <div class="spreadsheet border border-primary" id="spredsheed-434DEFJKLSD3453dgdfgQ_GfmO5tORPMdlOW0">
+      <h3>Table 2</h3>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-primary">Add New Table</button>
+      </div>
+      <br>
+      <div class="form-group row ml-4">
+        <label for="speadsheet-id" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control spreadsheet-input" name="ID" id="speadsheet-id" value="434DEFJKLSD3453dgdfgQ_GfmO5tORPMdlOW0">
+        </div>
+      </div>
+    </div>
     <!-- Admins -->
     <div class="admins">
       <h3>Admins</h3>
@@ -175,11 +192,11 @@
       </div>
       <!-- admin2 -->
       <div class="form-group row ml-5 mb-3">
-          <div class="input-group-append">
-            <input type="text" class="form-control admin-number" name="admin-number" value="79196572259">
-            <button class="btn btn-outline-danger" type="button" onclick="removeAdmin(event)">X</button>
-          </div>
+        <div class="input-group-append">
+          <input type="text" class="form-control admin-number" name="admin-number" value="79196572259">
+          <button class="btn btn-outline-danger" type="button" onclick="removeAdmin(event)">X</button>
         </div>
+      </div>
     </div>
     <!-- Spredsheet Log -->
     <div class="spreadsheetlog">
@@ -218,43 +235,43 @@
       <div class="form-group row ml-4">
         <label for="sendertimeout" class="col-sm-2 col-form-label">Sender Timeout</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Sender Timeout" id="sendertimeout" value="3">
+          <input type="text" class="form-control" name="sendertimeout" id="sendertimeout" value="3">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="hello-message" class="col-sm-2 col-form-label">Hello Message</label>
+        <label for="hellomessage" class="col-sm-2 col-form-label">Hello Message</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Hello Message" id="hello-message" value="Нажми на кнопку 'Поделиться номером телефона' внизу.">
+          <input type="text" class="form-control" name="Hello Message" id="hellomessage" value="Нажми на кнопку 'Поделиться номером телефона' внизу.">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="auto-response-text" class="col-sm-2 col-form-label">Auto Responce</label>
+        <label for="autoresponsetext" class="col-sm-2 col-form-label">Auto Responce</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Auto Responce" id="auto-response-text" value="Бот не отвечает на сообщения. Мы видим твои сообщения, но если есть вопросы, лучше задать их напрямую Соне или Андрею.">
+          <input type="text" class="form-control" name="autoresponsetext" id="autoresponsetext" value="Бот не отвечает на сообщения. Мы видим твои сообщения, но если есть вопросы, лучше задать их напрямую Соне или Андрею.">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="already-subscribed-message" class="col-sm-2 col-form-label">AlreadySubscribedMessage</label>
+        <label for="AlreadySubscribedMessage" class="col-sm-2 col-form-label">AlreadySubscribedMessage</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="AlreadySubscribedMessage" id="already-subscribed-message" value="Этот номер уже используется другим пользователем. Перешлите это сообщение Андрею (+7 985 151-57-26) для решения проблемы.">
+          <input type="text" class="form-control" name="AlreadySubscribedMessage" id="AlreadySubscribedMessage" value="Этот номер уже используется другим пользователем. Перешлите это сообщение Андрею (+7 985 151-57-26) для решения проблемы.">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="user-subscribed" class="col-sm-2 col-form-label">UserSubscribed</label>
+        <label for="UserSubscribed" class="col-sm-2 col-form-label">UserSubscribed</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UserSubscribed" id="user-subscribed" value="Отлично, подписка активна! Я обязательно тебе напишу, если у меня будут для тебя новости!">
+          <input type="text" class="form-control" name="UserSubscribed" id="UserSubscribed" value="Отлично, подписка активна! Я обязательно тебе напишу, если у меня будут для тебя новости!">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="user-unsubscribed" class="col-sm-2 col-form-label">UserUnsubscribed</label>
+        <label for="UserUnsubscribed" class="col-sm-2 col-form-label">UserUnsubscribed</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UserUnSubscribed" id="user-unsubscribed" value="Ок, подписка отключена. Возвращайся! Для возвращения просто набери /start">
+          <input type="text" class="form-control" name="UserUnsubscribed" id="UserUnsubscribed" value="Ок, подписка отключена. Возвращайся! Для возвращения просто набери /start">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="unsupported-message-type" class="col-sm-2 col-form-label">UnsupportedMessageType</label>
+        <label for="UnsupportedMessageType" class="col-sm-2 col-form-label">UnsupportedMessageType</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UnsupportedMessageType" id="unsupported-message-type" value="Бот не отвечает на сообщения. Если у тебя есть вопросы, лучше задать их напрямую Соне или Андрею.">
+          <input type="text" class="form-control" name="UnsupportedMessageType" id="UnsupportedMessageType" value="Бот не отвечает на сообщения. Если у тебя есть вопросы, лучше задать их напрямую Соне или Андрею.">
         </div>
       </div>
       <hr />
@@ -264,6 +281,7 @@
     </div>
   </form>
   <!-- Scripts -->
+  <script src="./js/loadConfig.js"></script>
   <script src="./js/toJSON.js"></script>
   <script src="./js/addNewAdmin.js"></script>
 </body>

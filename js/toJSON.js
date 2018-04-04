@@ -4,16 +4,17 @@ function getValue(id) {
 function toJSON() {
   const obj = {};
   obj.Twillo = {
-    Sid: getValue('sid'),
-    Token: getValue('token'),
-    phoneNumber: getValue('phone-number'),
+    Sid: getValue('Twillo-Sid'),
+    Token: getValue('Twillo-Token'),
+    phoneNumber: getValue('Twillo-phoneNumber'),
   };
   obj.BotApiKey = getValue('bot-api-key');
   obj.DbPath = getValue('db-path');
   obj.GoogleAppName = getValue('google-app-name');
   //spreadsheets
-  // const spreadsheets = document.querySelectorAll(".spreadsheets .list");
-  // console.log(spreadsheets);
+  const spreadsheetIds = [];
+  const spreadsheetsNodes = document.querySelectorAll(".spreadsheet-input");
+  console.log(spreadsheetsNodes);
   
   //admins
   const adminsNumbers = [];
@@ -36,5 +37,5 @@ function toJSON() {
   obj.UserSubscribed = getValue('user-subscribed');
   obj.UserUnsubscribed = getValue('user-unsubscribed');
   obj.UnsupportedMessageType = getValue('unsupported-message-type');
-  console.log (obj);
+  // console.log(obj);
 }
