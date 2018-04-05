@@ -9,6 +9,7 @@ function loadConfig() {
       loadTwilloValues(data.Twillo);
       loadRestValues(data);
       loadAdmins(data.admins);
+      loadTables(data.spreadsheets);
     })
     .catch(err => {
       console.log(err);
@@ -38,4 +39,8 @@ function loadAdmins(admins) {
   admins.forEach(admin => {
     addNewAdmin(admin);
   });
+}
+
+function loadTables(tables) {
+  console.log(tables);
 }
