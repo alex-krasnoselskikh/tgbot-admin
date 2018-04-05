@@ -32,7 +32,7 @@
           "date": "B",
           "status": "I",
           "isSendedColumn": "J",
-          "MessageText": "K",
+          "messagetext": "K",
           "tguser": "L"
         }
       ]

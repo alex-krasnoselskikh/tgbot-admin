@@ -41,6 +41,11 @@ function loadAdmins(admins) {
   });
 }
 
-function loadTables(tables) {
-  console.log(tables);
+function loadTables(tables) { // And Lists within
+  tables.forEach(table => {
+    addNewTable(table);
+    table.lists.forEach(list => {
+      addNewList(list);
+    })
+  });
 }
