@@ -12,7 +12,7 @@ function removeAdmin(e) {
   </div>
 </div> */}
 
-  function addNewAdmin() {
+  function addNewAdmin(value = "") {
   const outerDiv = document.createElement("div");
   outerDiv.setAttribute("class", "form-group row ml-5 mb-3");
 
@@ -23,6 +23,7 @@ function removeAdmin(e) {
   newInput.setAttribute("type", "text");
   newInput.setAttribute("class", "form-control admin-number");
   newInput.setAttribute("name", "admin-number");
+   newInput.setAttribute("value", value);  
 
   const placeBefore = document.getElementById("admins-to-add");
   

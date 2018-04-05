@@ -6,8 +6,9 @@ function loadConfig() {
     .then(data => {
       // console.log('data');
       // console.log(data);
-      loadTwillo(data);
-      loadRest(data);
+      loadTwilloValues(data.Twillo);
+      loadRestValues(data);
+      loadAdmins(data.admins);
     })
     .catch(err => {
       console.log(err);
@@ -15,20 +16,26 @@ function loadConfig() {
   // console.log(config);
 }
 
-function loadTwillo(config) {
-  const keys = Object.keys(config.Twillo);
+function loadTwilloValues(config) {
+  const keys = Object.keys(config);
   keys.forEach(key => {
     // console.log(document.getElementById(`Twillo-${key}`))
-    document.getElementById(`Twillo-${key}`).value = config.Twillo[key];
+    document.getElementById(`Twillo-${key}`).value = config[key];
   });
 }
 
-function loadRest(config) {
+function loadRestValues(config) {
   const keys = Object.keys(config)
     .filter(key => typeof config[key] !== 'object');
   // console.log(keys)
   keys.forEach(key => {
     document.getElementById(`${key}`).value = config[key];
     // console.log(key)
+  });
+}
+
+function loadAdmins(admins) {
+  admins.forEach(admin => {
+    addNewAdmin(admin);
   });
 }
