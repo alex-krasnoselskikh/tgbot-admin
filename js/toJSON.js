@@ -8,9 +8,9 @@ function toJSON() {
     Token: getValue('Twillo-Token'),
     phoneNumber: getValue('Twillo-phoneNumber'),
   };
-  obj.BotApiKey = getValue('bot-api-key');
-  obj.DbPath = getValue('db-path');
-  obj.GoogleAppName = getValue('google-app-name');
+  obj.BotApiKey = getValue('BotApiKey');
+  obj.DbPath = getValue('DbPath');
+  obj.GoogleAppName = getValue('GoogleAppName');
   //spreadsheets
   const spreadsheetIds = [];
   const spreadsheetsNodes = document.querySelectorAll(".spreadsheet-input");
@@ -31,11 +31,11 @@ function toJSON() {
     auths: getValue('auths'),
   }
   obj.sendertimeout = getValue('sendertimeout');
-  obj.hellomessage = getValue('hello-message');
-  obj.autoresponsetext = getValue('auto-response-text');
-  obj.AlreadySubscribedMessage = getValue('already-subscribed-message');
-  obj.UserSubscribed = getValue('user-subscribed');
-  obj.UserUnsubscribed = getValue('user-unsubscribed');
-  obj.UnsupportedMessageType = getValue('unsupported-message-type');
-  // console.log(obj);
+  obj.hellomessage = getValue('hellomessage');
+  obj.autoresponsetext = getValue('autoresponsetext');
+  obj.AlreadySubscribedMessage = getValue('AlreadySubscribedMessage');
+  obj.UserSubscribed = getValue('UserSubscribed');
+  obj.UserUnsubscribed = getValue('UserUnsubscribed');
+  obj.UnsupportedMessageType = getValue('UnsupportedMessageType');
+  console.log(obj);
 }
