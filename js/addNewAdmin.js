@@ -11,6 +11,26 @@ function removeAdmin(e) {
       <button class="btn btn-outline-danger" type="button" onclick="removeAdmin(event)">X</button>
   </div>
 </div> */}
+// This have usability problem - after add new, it erases inputs
+
+// .addEventListener("input", myFunction); or oninput = "function" may help
+// make it global? https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oninput
+
+// or https://stackoverflow.com/questions/42372432/convert-a-es6-template-string-to-html-element-using-vanilla-javascript
+
+// function addNewAdmin(adminPhone = '') {
+//   const templateAdmin = `
+//   <div class="form-group row ml-5 mb-3">
+//     <div class="input-group-append">
+//       <input type="text" class="form-control admin-number" name="admin-number" value="${adminPhone}">
+//       <button class="btn btn-outline-danger" type="button" onclick="removeAdmin(event)">X</button>
+//     </div>
+//   </div>
+//   `;
+//   let tmp = document.getElementById('admins-to-add').innerHTML;
+//   tmp = templateAdmin + tmp;
+//   document.getElementById('admins-to-add').innerHTML = tmp;
+// }
 
   function addNewAdmin(value = "") {
   const outerDiv = document.createElement("div");

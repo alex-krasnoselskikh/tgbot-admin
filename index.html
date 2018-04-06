@@ -65,71 +65,8 @@
       <div class="col-sm-10">
         <button type="button" class="btn btn-primary" onclick="addNewTable()">Add New Table</button>
       </div>
-      <div id="spreadsheets">
+      <div id="spreadsheets-to-add">
         <!--- New tables goes here -->
-        <!-- Spreadsheet1 -->
-        <div class="spreadsheet border border-primary" id="spredsheet-1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0">
-          <h3>Table 1</h3>
-          <div class="col-sm-10">
-            <button type="button" class="btn btn-danger" onclick="removeTable(event)">Remove this Table</button>
-          </div>
-          <div class="form-group row ml-4">
-            <label for="speadsheet-id" class="col-sm-2 col-form-label">ID</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control spreadsheet-input" name="ID" id="speadsheet-id" value="1AYJD5u22BiZ3uUA3o1cYaIMPiUQ_GfmO5tORPMdlOW0">
-            </div>
-          </div>
-          <!-- Lists -->
-          <div class="lists">
-            <div class="col-sm-10">
-              <button type="button" class="btn btn-secondary" onclick="addNewList()">Add New List</button>
-            </div>
-            <div id="lists-to-add"></div>
-            <!-- First List -->
-            <div class="list border border-secondary w-50">
-              <div class="col-sm-10">
-                <button type="button" class="btn btn-danger" onclick="removeList(event)">Remove this List</button>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="listname" class="col-sm-2 col-form-label">List Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="List Name" id="listname" value="А">
-                </div>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="date" class="col-sm-2 col-form-label">Date</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="Date" id="date" value="B">
-                </div>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="status" class="col-sm-2 col-form-label">Status</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="Status" id="status" value="AN">
-                </div>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="is-sended-column" class="col-sm-2 col-form-label">is Sended Column</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="is Sended Column" id="is-sended-column" value="AO">
-                </div>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="message-text" class="col-sm-2 col-form-label">Message Text</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="Message Text" id="message-text" value="AP">
-                </div>
-              </div>
-              <div class="form-group row ml-4">
-                <label for="tg-user" class="col-sm-2 col-form-label">Tg User</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="Tg User" id="tg-user" value="AP">
-                </div>
-              </div>
-              <hr />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <!-- Admins -->
@@ -138,7 +75,8 @@
       <div class="col-sm-10 ml-4">
         <button type="button" class="btn btn-primary" id="add-new-admin" onclick="addNewAdmin()">Add New Admin</button>
       </div>
-      <div id="admins-to-add" class="form-group row ml-5"></div>
+      <br />
+      <div id="admins-to-add" class="col-sm-10"></div>
     </div>
     <!-- Spredsheet Log -->
     <div class="spreadsheetlog">
