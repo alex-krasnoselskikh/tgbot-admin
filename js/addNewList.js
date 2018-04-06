@@ -1,9 +1,9 @@
 function removeList(e) {
-  e.target.parentElement.parentElement.parentElement
-    .removeChild(e.target.parentElement.parentElement);
+  e.target.parentElement.parentElement.parentElement.parentElement
+    .removeChild(e.target.parentElement.parentElement.parentElement);
   // console.log('list removed');
 }
-
+// DomParser?
 function addNewList(list = {}) {
   const { listname, date, status, isSendedColumn, messagetext, tguser } = list;
   const templateList = `
@@ -50,8 +50,11 @@ function addNewList(list = {}) {
     <hr />
   </div>
   `;
-  let tmp = document.getElementById('lists-to-add').innerHTML;
-  tmp = templateList + tmp;
-  document.getElementById('lists-to-add').innerHTML = tmp;
+  // let tmp = document.getElementById('lists-to-add').innerHTML;
+  // tmp = templateList + tmp;
+  const div = document.createElement("div");
+  div.innerHTML = templateList;
+  const container = document.getElementById('lists-to-add');
+  container.insertBefore(div, container.firstChild);
   // console.log('list added');
 }

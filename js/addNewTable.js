@@ -1,6 +1,12 @@
+// window.addEventListener('input', function (e) {
+//   console.log("input event detected! coming from this element:", e.target.value);
+//   e.target.attributes.value = e.target.value;
+//   console.log(e.target.attributes.value);
+//  }, false);
+
 function removeTable(e) {
-  e.target.parentElement.parentElement.parentElement
-    .removeChild(e.target.parentElement.parentElement);
+  e.target.parentElement.parentElement.parentElement.parentElement
+    .removeChild(e.target.parentElement.parentElement.parentElement);
 }
 
 function addNewTable(table = {}) {
@@ -25,7 +31,11 @@ function addNewTable(table = {}) {
     </div>
   </div>
 `;
-  let tmp = document.getElementById("spreadsheets").innerHTML;
-  tmp = templateTable + tmp;
-  document.getElementById("spreadsheets").innerHTML = tmp;
+  // let tmp = document.getElementById("spreadsheets").innerHTML;
+  // tmp = templateTable + tmp;
+  // document.getElementById("spreadsheets").innerHTML = tmp;
+  const div = document.createElement("div");
+  div.innerHTML = templateTable;
+  const container = document.getElementById('spreadsheets-to-add');
+  container.insertBefore(div, container.firstChild);
 }
