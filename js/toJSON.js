@@ -12,17 +12,45 @@ function toJSON() {
   obj.DbPath = getValue('DbPath');
   obj.GoogleAppName = getValue('GoogleAppName');
   //spreadsheets
-  const spreadsheetIds = [];
-  const spreadsheetsNodes = document.querySelectorAll(".spreadsheet-input");
-  console.log(spreadsheetsNodes);
+
+  function getSpreadsheets() {
+    const spreadsheets = [];
+    //get ids
+    const spreadsheetsNodes = document.querySelectorAll(".spreadsheet");
+    spreadsheetsNodes.forEach(node => {
+      const spreadsheet = {}
+      const lists = [];
+      const idInput = node.querySelectorAll(".spreadsheet-input");
+      spreadsheet.id = idInput[0].value;
+      // get lists
+      const listNodes = node.querySelectorAll(".list");
+      listNodes.forEach(listNode => {
+        const list = {};
+        const listInputs = listNode.querySelectorAll("input[type=text]");
+        listInputs.forEach(input => {
+          list[input.name] = input.value;
+        });
+        lists.push(list);
+      });
+      spreadsheet.lists = lists;
+      spreadsheets.push(spreadsheet);
+    });
+    return spreadsheets;
+  }  
   
+  obj.spreadsheets = getSpreadsheets();
+
   //admins
-  const adminsNumbers = [];
-  const adminsNodes = document.querySelectorAll(".admin-number");
-  adminsNodes.forEach(node => {
-    adminsNumbers.push(node.value);
-  })
-  obj.admins = adminsNumbers;
+  function getAdminsNumbers() {
+    const adminsNumbers = [];
+    const adminsNodes = document.querySelectorAll(".admin-number");
+    adminsNodes.forEach(node => {
+      adminsNumbers.push(node.value);
+    });
+    return adminsNumbers;
+  }
+
+  obj.admins = getAdminsNumbers();
 
   obj.spreadsheetlog = {
     id: getValue('log-table-id'),
