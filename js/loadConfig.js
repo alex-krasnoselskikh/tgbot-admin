@@ -1,15 +1,17 @@
 window.addEventListener('onload', loadConfig());
 function loadConfig() {
-  const url = '../json/config.json';
+  // const url = '../json/config.json';
+  const url = 'http://localhost:5550/api/Config';
   fetch(url)
     .then(res => res.json())
     .then(data => {
       // console.log('data');
       // console.log(data);
-      loadTwilloValues(data.Twillo);
+      loadTwilloValues(data.twillo);
       loadRestValues(data);
       loadAdmins(data.admins);
       loadTables(data.spreadsheets);
+      loadLogs(data.spreadsheetLog);
     })
     .catch(err => {
       console.log(err);
@@ -38,6 +40,14 @@ function loadRestValues(config) {
 function loadAdmins(admins) {
   admins.forEach(admin => {
     addNewAdmin(admin);
+  });
+}
+
+function loadLogs(logs) { 
+  const keys = Object.keys(logs);
+  keys.forEach(key => {
+    // console.log(document.getElementById(`Twillo-${key}`))
+    document.getElementById(`log-${key}`).value = logs[key];
   });
 }
 
