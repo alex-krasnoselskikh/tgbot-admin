@@ -33,7 +33,7 @@ function toJSON() {
   obj.UserUnsubscribed = getValue('userUnsubscribed');
   obj.UnsupportedMessageType = getValue('unsupportedMessageType');
 
-  fetch('http://localhost:5550/api/Config', {
+  fetch(url, {
     method: 'PUT',
     headers: new Headers({'content-type': 'application/json'}),
     body: JSON.stringify(obj)
