@@ -27,7 +27,7 @@ function addNewTable(table = {}) {
       <div class="col-sm-10">
         <button type="button" class="btn btn-secondary" onclick="addNewList()">Add New List</button>
       </div>
-    <div id="lists-to-add"></div>
+    <div id="lists-to-add" class="d-flex flex-wrap"></div>
     </div>
   </div>
 `;
