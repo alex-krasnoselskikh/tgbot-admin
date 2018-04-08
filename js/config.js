@@ -1,1 +1,1 @@
-const url = 'http://localhost:5550/api/Config';
+const url = 'https://tg.cocklife.ru/admin/api/Config';
