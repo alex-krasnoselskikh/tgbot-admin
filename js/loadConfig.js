@@ -1,7 +1,5 @@
 window.addEventListener('onload', loadConfig());
 function loadConfig() {
-  // const url = '../json/config.json';
-  const url = 'http://localhost:5550/api/Config';
   fetch(url)
     .then(res => res.json())
     .then(data => {
