@@ -5,7 +5,7 @@ function removeList(e) {
 }
 // DomParser?
 function addNewList(list = {}) {
-  const { listname, date, status, isSendedColumn, messagetext, tguser } = list;
+  const { listName, date, status, isSendedColumn, messageText, tgUser } = list;
   const templateList = `
   <div class="list border border-secondary w-50">
     <div class="col-sm-10">
@@ -14,7 +14,7 @@ function addNewList(list = {}) {
     <div class="form-group row ml-4">
       <label for="listname" class="col-sm-2 col-form-label">List Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="listname" id="listname" value="${listname || ''}">
+        <input type="text" class="form-control" name="listname" id="listname" value="${listName || ''}">
       </div>
     </div>
     <div class="form-group row ml-4">
@@ -38,13 +38,13 @@ function addNewList(list = {}) {
     <div class="form-group row ml-4">
       <label for="message-text" class="col-sm-2 col-form-label">Message Text</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="messagetext" id="message-text" value="${messagetext || ''}">
+        <input type="text" class="form-control" name="messagetext" id="message-text" value="${messageText || ''}">
       </div>
     </div>
     <div class="form-group row ml-4">
       <label for="tg-user" class="col-sm-2 col-form-label">Tg User</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="tguser" id="tguser" value="${tguser || ''}">
+        <input type="text" class="form-control" name="tguser" id="tguser" value="${tgUser || ''}">
       </div>
     </div>
     <hr />
