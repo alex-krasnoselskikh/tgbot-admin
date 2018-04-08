@@ -10,60 +10,38 @@
 </head>
 
 <body>
-  <h1>Management</h1>
+  <h1>Управление</h1>
   <form action="" id="management-form">
     <!-- Twillo -->
     <div class="twillo">
-      <h3>Twillo</h3>
+      <h3>Twilio</h3>
       <div class="form-group row ml-4">
         <label for="sid" class="col-sm-2 col-form-label">Sid</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Twillo-Sid" id="Twillo-Sid" value="">
+          <input type="text" class="form-control" name="Twillo-sid" id="Twillo-sid">
         </div>
       </div>
 
       <div class="form-group row ml-4">
         <label for="token" class="col-sm-2 col-form-label">Token</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Twillo-Token" id="Twillo-Token" value="">
+          <input type="text" class="form-control" name="Twillo-token" id="Twillo-token">
         </div>
       </div>
 
       <div class="form-group row ml-4">
-        <label for="phone-number" class="col-sm-2 col-form-label">Phone Number</label>
+        <label for="phone-number" class="col-sm-2 col-form-label">Имя отправителя</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Twillo-phoneNumber" id="Twillo-phoneNumber" value="">
+          <input type="text" class="form-control" name="Twillo-phoneNumber" id="Twillo-phoneNumber">
         </div>
       </div>
       <hr />
     </div>
-
-    <div class="form-group row ml-4">
-      <label for="bot-api-key" class="col-sm-2 col-form-label">Bot API Key</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="BotApiKey" id="BotApiKey" value="hardcode">
-      </div>
-    </div>
-
-    <div class="form-group row ml-4">
-      <label for="db-path" class="col-sm-2 col-form-label">DB Path</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="DbPath" id="DbPath" value="123">
-      </div>
-    </div>
-
-    <div class="form-group row ml-4">
-      <label for="google-app-name" class="col-sm-2 col-form-label">Google App Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="GoogleAppName" id="GoogleAppName" value="123">
-      </div>
-
-    </div>
     <!-- SpreadSheets -->
     <div class="spreadsheets">
-      <h3>Tables</h3>
+      <h3>Google-Таблицы</h3>
       <div class="col-sm-10">
-        <button type="button" class="btn btn-primary" onclick="addNewTable()">Add New Table</button>
+        <button type="button" class="btn btn-primary" onclick="addNewTable()">Добавить новую таблицу</button>
       </div>
       <div id="spreadsheets-to-add">
         <!--- New tables goes here -->
@@ -71,101 +49,123 @@
     </div>
     <!-- Admins -->
     <div class="admins">
-      <h3>Admins</h3>
+      <h3>Администраторы</h3>
       <div class="col-sm-10 ml-4">
-        <button type="button" class="btn btn-primary" id="add-new-admin" onclick="addNewAdmin()">Add New Admin</button>
+        <button type="button" class="btn btn-primary" id="add-new-admin" onclick="addNewAdmin()">Добавить нового администратора</button>
       </div>
       <br />
       <div id="admins-to-add" class="col-sm-10"></div>
     </div>
     <!-- Spredsheet Log -->
     <div class="spreadsheetlog">
-      <h3>Spreadsheet Log</h3>
+      <h3>Google-таблица с логами</h3>
       <div class="form-group row ml-4">
-        <label for="log-id" class="col-sm-2 col-form-label">Table Log ID</label>
+        <label for="log-id" class="col-sm-2 col-form-label">ID</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="log-table-id" id="log-table-id" value="1GqyxMT-fOw5igY38QF9Lq3x26g5YZWu8i-7B4-4oF1o">
+          <input type="text" class="form-control" name="log-id" id="log-id">
         </div>
       </div>
 
       <div class="form-group row ml-4">
-        <label for="messages" class="col-sm-2 col-form-label">Messages</label>
+        <label for="messages" class="col-sm-2 col-form-label">Сообщения</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="messages" id="messages" value="cообщения">
+          <input type="text" class="form-control" name="log-messages" id="log-messages">
         </div>
       </div>
 
       <div class="form-group row ml-4">
-        <label for="errors" class="col-sm-2 col-form-label">Errors</label>
+        <label for="errors" class="col-sm-2 col-form-label">Ошибки</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="errors" id="errors" value="ошибки">
+          <input type="text" class="form-control" name="log-errors" id="log-errors">
         </div>
       </div>
 
       <div class="form-group row ml-4">
-        <label for="auths" class="col-sm-2 col-form-label">Auths</label>
+        <label for="auths" class="col-sm-2 col-form-label">Авторизации</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="auths" id="auths" value="авторизации">
+          <input type="text" class="form-control" name="log-auths" id="log-auths">
         </div>
       </div>
     </div>
     <!-- Rest Parameters -->
     <div class="rest-params">
-      <h3>Rest Parameters</h3>
+      <h3>Прочие параметры</h3>
+
       <div class="form-group row ml-4">
-        <label for="sendertimeout" class="col-sm-2 col-form-label">Sender Timeout</label>
+        <label for="bot-api-key" class="col-sm-2 col-form-label">Telegram API Key</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="sendertimeout" id="sendertimeout" value="3">
+          <input type="text" class="form-control" name="botApiKey" id="botApiKey">
+        </div>
+      </div>
+  
+      <div class="form-group row ml-4">
+        <label for="db-path" class="col-sm-2 col-form-label">Файл базы данных</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="dbPath" id="dbPath">
+        </div>
+      </div>
+  
+      <div class="form-group row ml-4">
+        <label for="google-app-name" class="col-sm-2 col-form-label">Google App Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="googleAppName" id="googleAppName">
+        </div>
+      </div>
+
+      <div class="form-group row ml-4">
+        <label for="sendertimeout" class="col-sm-2 col-form-label">Таймаут</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="senderTimeout" id="senderTimeout">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="hellomessage" class="col-sm-2 col-form-label">Hello Message</label>
+        <label for="hellomessage" class="col-sm-2 col-form-label">Приветственное сообщение (Hello Message)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Hello Message" id="hellomessage" value="Нажми на кнопку 'Поделиться номером телефона' внизу.">
+          <input type="text" class="form-control" name="Hello Message" id="helloMessage">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="autoresponsetext" class="col-sm-2 col-form-label">Auto Responce</label>
+        <label for="autoresponsetext" class="col-sm-2 col-form-label">Автоответ (Auto Responce)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="autoresponsetext" id="autoresponsetext" value="Бот не отвечает на сообщения. Мы видим твои сообщения, но если есть вопросы, лучше задать их напрямую Соне или Андрею.">
+          <input type="text" class="form-control" name="autoresponsetext" id="autoresponseText">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="AlreadySubscribedMessage" class="col-sm-2 col-form-label">AlreadySubscribedMessage</label>
+        <label for="alreadySubscribedMessage" class="col-sm-2 col-form-label">Пользователь уже подписан (AlreadySubscribedMessage)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="AlreadySubscribedMessage" id="AlreadySubscribedMessage" value="Этот номер уже используется другим пользователем. Перешлите это сообщение Андрею (+7 985 151-57-26) для решения проблемы.">
+          <input type="text" class="form-control" name="alreadySubscribedMessage" id="alreadySubscribedMessage">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="UserSubscribed" class="col-sm-2 col-form-label">UserSubscribed</label>
+        <label for="userSubscribed" class="col-sm-2 col-form-label">Пользователь подписался (UserSubscribed)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UserSubscribed" id="UserSubscribed" value="Отлично, подписка активна! Я обязательно тебе напишу, если у меня будут для тебя новости!">
+          <input type="text" class="form-control" name="userSubscribed" id="userSubscribed">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="UserUnsubscribed" class="col-sm-2 col-form-label">UserUnsubscribed</label>
+        <label for="userUnsubscribed" class="col-sm-2 col-form-label">Пользователь отписался (UserUnsubscribed)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UserUnsubscribed" id="UserUnsubscribed" value="Ок, подписка отключена. Возвращайся! Для возвращения просто набери /start">
+          <input type="text" class="form-control" name="userUnsubscribed" id="userUnsubscribed">
         </div>
       </div>
       <div class="form-group row ml-4">
-        <label for="UnsupportedMessageType" class="col-sm-2 col-form-label">UnsupportedMessageType</label>
+        <label for="unsupportedMessageType" class="col-sm-2 col-form-label">Сообщение неподдерживаемого типа (UnsupportedMessageType)</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="UnsupportedMessageType" id="UnsupportedMessageType" value="Бот не отвечает на сообщения. Если у тебя есть вопросы, лучше задать их напрямую Соне или Андрею.">
+          <input type="text" class="form-control" name="unsupportedMessageType" id="unsupportedMessageType">
         </div>
       </div>
       <hr />
     </div>
     <div class="col-sm-10">
-      <button type="button" onclick="toJSON()" class="btn btn-success">Save Config</button>
+      <button type="button" onclick="toJSON()" class="btn btn-success">Сохранить</button>
     </div>
   </form>
-  <!-- Scripts -->
-  <script src="./js/loadConfig.js"></script>
+  <!-- Scripts -->  
   <script src="./js/toJSON.js"></script>
   <script src="./js/addNewAdmin.js"></script>
   <script src="./js/addNewTable.js"></script>
   <script src="./js/addNewList.js"></script>
+  <script src="./js/loadConfig.js"></script>
 </body>
 
 </html>
