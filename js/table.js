@@ -21,12 +21,24 @@ function loadPage(pageNumber) {
     .then(data => {
       const offset = (pageNumber - 1) * 10;
       const pageData = data.slice(offset, offset + limit);
+      window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'instant' 
+       });
       document.getElementById("table").remove();
       drawTable(pageData);
     })
     .catch(err => {
       console.log(err)
     });
+}
+
+function drawPage(e) {
+  const pageNumber = Number(e.target.innerHTML);
+  currentPage = pageNumber;
+  changeActivePageButton(pageNumber);
+  loadPage(pageNumber);
 }
 
 function drawNextPage() {
@@ -82,13 +94,6 @@ function drawButtons(total) {
   document.getElementById("buttons-top").appendChild(div);
   const clone = div.cloneNode(true);
   document.getElementById("buttons-bottom").appendChild(clone);
-}
-
-function drawPage(e) {
-  const pageNumber = Number(e.target.innerHTML);
-  currentPage = pageNumber;
-  changeActivePageButton(pageNumber);
-  loadPage(pageNumber);
 }
 
 function drawTable(data) {
