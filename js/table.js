@@ -62,9 +62,24 @@ function drawPreviousPage() {
 function changeActivePageButton(buttonNumber) {
   const lis = [...document.querySelectorAll(".page-item")]
     .forEach(li => li.classList.remove("active"));
-  const buttons = [...document.querySelectorAll(".page-link")]
-    .filter(button => button.textContent == currentPage)
-    .forEach(button => button.parentElement.classList.add("active"));
+  const buttons = [...document.querySelectorAll(".page-link")];
+    buttons.filter(button => button.textContent == currentPage)
+      .forEach(button => button.parentElement.classList.add("active"));
+  if (currentPage === 1) {
+    buttons.filter(button => button.textContent === "Previous")
+      .forEach(button => button.parentElement.classList.add("disabled"));
+  }
+  // Handle Previous and Next button classes
+  buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
+    .forEach(button => button.parentElement.classList.remove("disabled"));
+  if (currentPage === 1) {
+    buttons.filter(button => button.textContent === "Previous")
+      .forEach(button => button.parentElement.classList.add("disabled"));
+  }
+  if (currentPage === numberOfPagesTotal) {
+    buttons.filter(button => button.textContent === "Next")
+      .forEach(button => button.parentElement.classList.add("disabled"));
+  }
 }
 
 function drawButtons(total) {
@@ -73,7 +88,7 @@ function drawButtons(total) {
   const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
   const paginationTemplate = `
     <ul class="pagination justify-content-center">
-      <li class="page-item button-previous">
+      <li class="page-item button-previous disabled">
         <button class="page-link" type="button" onclick="drawPreviousPage()">Previous</button>
       </li>
       ${buttons.map(button => `
