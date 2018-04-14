@@ -1,5 +1,4 @@
-// window.addEventListener('onload', loadConfig());
-loadConfigurationForm();
+window.addEventListener('onload', loadConfigurationForm());
 function loadConfig() {
   fetch(url)
     .then(res => res.json())

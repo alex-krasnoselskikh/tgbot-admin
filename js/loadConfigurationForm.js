@@ -7,7 +7,7 @@ function loadConfigurationForm() {
       <button class="tablinks" onclick="switchTab(event, 'config-admins')">Администраторы</button>
     </div>
 
-    <div id="config-sources" class="tabcontent">
+    <div id="config-sources" class="tabcontent active">
       <h3>Google-Таблицы</h3>
       <div class="col-sm-10">
         <button type="button" class="btn btn-primary" onclick="addNewTable()">Добавить новую таблицу</button>
@@ -131,7 +131,7 @@ function loadConfigurationForm() {
   div.innerHTML = templateConfigurationForm;
   document.getElementById("main").innerHTML = "";
   document.getElementById("main").appendChild(div);
-  document.getElementById("tabDefaultOpen").click();
+  // document.getElementById("tabDefaultOpen").click();
   loadConfig();
 }
 

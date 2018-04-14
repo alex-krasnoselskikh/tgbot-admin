@@ -1,4 +1,4 @@
-function switchTab(evt, tabName) {
+function switchTab(e, tabName) {
   let i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -9,5 +9,5 @@ function switchTab(evt, tabName) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
   document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    e.currentTarget.className += " active";
 }
