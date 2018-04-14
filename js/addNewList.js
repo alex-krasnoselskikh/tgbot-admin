@@ -11,41 +11,29 @@ function addNewList(list = {}) {
     <div class="text-right">
       <button type="button" class="btn btn-danger" onclick="removeList(event)">&#x274C</button>
     </div>
-    <div class="form-group row ml-1">
-      <label for="listname" class="col-sm-2 col-form-label">List Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="listname" id="listname" value="${listName || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="listname" class="col-sm-2 col-form-label">Название листа</label>
+      <input type="text" class="form-control" name="listname" id="listname" value="${listName || ''}">
     </div>
-    <div class="form-group row ml-1">
-      <label for="date" class="col-sm-2 col-form-label">Date</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="date" id="date" value="${date || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="date" class="col-sm-2 col-form-label">Дата</label>
+      <input type="text" class="form-control" name="date" id="date" value="${date || ''}">
     </div>
-    <div class="form-group row ml-1">
-      <label for="status" class="col-sm-2 col-form-label">Status</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="status" id="status" value="${status || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="status" class="col-sm-2 col-form-label">Статус</label>
+      <input type="text" class="form-control" name="status" id="status" value="${status || ''}">
     </div>
-    <div class="form-group row ml-1">
-      <label for="is-sended-column" class="col-sm-2 col-form-label">is Sended Column</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="isSendedColumn" id="is-sended-column" value="${isSendedColumn || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="is-sended-column" class="col-sm-2 col-form-label">Колонка "Сообщение отправлено"</label>
+      <input type="text" class="form-control" name="isSendedColumn" id="is-sended-column" value="${isSendedColumn || ''}">
     </div>
-    <div class="form-group row ml-1">
-      <label for="message-text" class="col-sm-2 col-form-label">Message Text</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="messagetext" id="message-text" value="${messageText || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="message-text" class="col-sm-2 col-form-label">Текст сообщения</label>
+      <input type="text" class="form-control" name="messagetext" id="message-text" value="${messageText || ''}">
     </div>
-    <div class="form-group row ml-1">
-      <label for="tg-user" class="col-sm-2 col-form-label">Tg User</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="tguser" id="tguser" value="${tgUser || ''}">
-      </div>
+    <div class="form-group ml-1">
+      <label for="tg-user" class="col-sm-2 col-form-label">Пользователь Телеграмм</label>
+      <input type="text" class="form-control" name="tguser" id="tguser" value="${tgUser || ''}">
     </div>
     <hr />
   </div>
@@ -53,7 +41,7 @@ function addNewList(list = {}) {
   // let tmp = document.getElementById('lists-to-add').innerHTML;
   // tmp = templateList + tmp;
   const div = document.createElement("div");
-  div.setAttribute("class", "mw-100")
+  div.setAttribute("class", "mw-25")
   div.innerHTML = templateList;
   const container = document.getElementById('lists-to-add');
   container.insertBefore(div, container.firstChild);
