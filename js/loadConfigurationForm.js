@@ -125,7 +125,7 @@ function loadConfigurationForm() {
       <button type="button" onclick="toJSON()" class="btn btn-success">Сохранить</button>
     </div>
   `;
-  console.log("loadded")
+  // console.log("loadded")
   const div = document.createElement("div");
   div.setAttribute("id", "config-form");
   div.innerHTML = templateConfigurationForm;

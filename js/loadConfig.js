@@ -18,7 +18,6 @@ function loadConfig() {
 function loadTwilloValues(config) {
   const keys = Object.keys(config);
   keys.forEach(key => {
-    // console.log(document.getElementById(`Twillo-${key}`))
     document.getElementById(`Twillo-${key}`).value = config[key];
   });
 }
