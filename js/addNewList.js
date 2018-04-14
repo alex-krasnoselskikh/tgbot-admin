@@ -7,7 +7,7 @@ function removeList(e) {
 function addNewList(list = {}) {
   const { listName, date, status, isSendedColumn, messageText, tgUser } = list;
   const templateList = `
-  <div class="list border border-secondary m-2">
+  <div class="list border border-secondary rounded m-2">
     <div class="text-right">
       <button type="button" class="btn btn-danger" onclick="removeList(event)">&#x274C</button>
     </div>

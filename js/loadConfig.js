@@ -3,8 +3,6 @@ function loadConfig() {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      // console.log('data');
-      // console.log(data);
       loadTwilloValues(data.twillo);
       loadRestValues(data);
       loadAdmins(data.admins);
@@ -14,7 +12,6 @@ function loadConfig() {
     .catch(err => {
       console.log(err);
     });
-  // console.log(config);
 }
 
 function loadTwilloValues(config) {
@@ -28,10 +25,8 @@ function loadTwilloValues(config) {
 function loadRestValues(config) {
   const keys = Object.keys(config)
     .filter(key => typeof config[key] !== 'object');
-  // console.log(keys)
   keys.forEach(key => {
     document.getElementById(`${key}`).value = config[key];
-    // console.log(key)
   });
 }
 
@@ -44,7 +39,6 @@ function loadAdmins(admins) {
 function loadLogs(logs) { 
   const keys = Object.keys(logs);
   keys.forEach(key => {
-    // console.log(document.getElementById(`Twillo-${key}`))
     document.getElementById(`log-${key}`).value = logs[key];
   });
 }
