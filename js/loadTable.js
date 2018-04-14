@@ -1,9 +1,29 @@
-window.addEventListener('onload', loadInitialData());
+// window.addEventListener('onload', loadInitial());
+function loadTable() {
+  const main = document.getElementById("main");
+  main.innerHTML = "";
+
+  const buttonsTop = document.createElement("div");
+  buttonsTop.setAttribute("id", "buttons-top");
+
+  const grid = document.createElement("div");
+  grid.setAttribute("id", "grid");
+  
+  const buttonsBottom = document.createElement("div");
+  buttonsBottom.setAttribute("id", "buttons-bottom");
+
+  main.appendChild(buttonsTop);
+  main.appendChild(grid);
+  main.appendChild(buttonsBottom);
+  loadInitial();
+}
+
 let
   limit = 10,
   currentPage = 1,
   numberOfPagesTotal = 0;
-function loadInitialData() {
+
+function loadInitial() {
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(res => res.json())
     .then(data => {
@@ -69,7 +89,7 @@ function changeActivePageButton(buttonNumber) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
-  // Handle Previous and Next button classes
+  // Handle Previous and Next buttons 'disabled' class
   buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
     .forEach(button => button.parentElement.classList.remove("disabled"));
   if (currentPage === 1) {
