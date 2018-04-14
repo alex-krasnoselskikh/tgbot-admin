@@ -15,16 +15,14 @@ function toJSON() {
   
   obj.spreadsheets = getSpreadsheets();
 
-
-
   obj.admins = getAdminsNumbers();
 
-  obj.spreadsheetlog = {
-    id: getValue('log-id'),
-    messages: getValue('log-messages'),
-    errors: getValue('log-errors'),
-    auths: getValue('log-auths'),
-  }
+  // obj.spreadsheetlog = {
+  //   id: getValue('log-id'),
+  //   messages: getValue('log-messages'),
+  //   errors: getValue('log-errors'),
+  //   auths: getValue('log-auths'),
+  // }
   obj.sendertimeout = getValue('senderTimeout');
   obj.hellomessage = getValue('helloMessage');
   obj.autoresponsetext = getValue('autoresponseText');

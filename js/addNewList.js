@@ -53,6 +53,7 @@ function addNewList(list = {}) {
   // let tmp = document.getElementById('lists-to-add').innerHTML;
   // tmp = templateList + tmp;
   const div = document.createElement("div");
+  div.setAttribute("class", "mw-100")
   div.innerHTML = templateList;
   const container = document.getElementById('lists-to-add');
   container.insertBefore(div, container.firstChild);
