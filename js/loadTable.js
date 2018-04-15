@@ -8,7 +8,7 @@ function loadTable() {
 
   const grid = document.createElement("div");
   grid.setAttribute("id", "grid");
-  
+
   const buttonsBottom = document.createElement("div");
   buttonsBottom.setAttribute("id", "buttons-bottom");
 
@@ -24,30 +24,31 @@ let
   numberOfPagesTotal = 0;
 
 function loadInitial() {
-  fetch('https://jsonplaceholder.typicode.com/posts')
+  fetch(`${usersUrl}list?limit=${limit}&offcet=0`)
     .then(res => res.json())
     .then(data => {
-      const firstPageData = data.slice(0, limit);
-      drawButtons(data.length);
-      drawTable(firstPageData);
+      // const firstPageData = data.slice(0, limit);
+      drawButtons(data.total);
+      drawTable(data.list);
+      console.log('total', data.total);
     })
     .catch(err => {
       console.log(err)
     });
 }
 function loadPage(pageNumber) {
-  fetch('https://jsonplaceholder.typicode.com/posts')
+  fetch(`${usersUrl}list?limit=${limit}&offcet=${(pageNumber - 1) * limit}`)
     .then(res => res.json())
     .then(data => {
-      const offset = (pageNumber - 1) * 10;
-      const pageData = data.slice(offset, offset + limit);
+      // const offset = (pageNumber - 1) * 10;
+      // const pageData = data.slice(offset, offset + limit);
       window.scroll({
         top: 0, 
         left: 0, 
         behavior: 'instant' 
        });
       document.getElementById("table").remove();
-      drawTable(pageData);
+      drawTable(data.list);
     })
     .catch(err => {
       console.log(err)
@@ -139,13 +140,13 @@ function drawTable(data) {
         <tr>
           ${keys.map(key => `
             <th scope="col" class="text-center">${key}</th>`)
-          .join('')}
+      .join('')}
         </tr>
       </thead>
       <tbody class="">
       ${data.map(entry => `
         <tr>
-          ${keys.map(key => `<td>${entry[key]}</td>`).join('')}
+          ${keys.map(key => `<td>${entry[key] === null ? "" : entry[key]}</td>`).join('')}
         </tr>
       `).join('')}
       </tbody>
