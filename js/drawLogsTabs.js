@@ -8,6 +8,7 @@ function drawLogsTabs() {
       <button class="tablinks" onclick="switchLogs(event, 'error')">Ошибки</button>
       <button class="tablinks" onclick="switchLogs(event, 'syserror')">Системные ошибки</button>
       <button class="tablinks" onclick="switchLogs(event, 'system')">Системные</button>
+      <button class="tablinks" onclick="switchLogs(event, 'history')">История по пользователю</button>
     </div>
     <div id="logs-display"></div>
   `;

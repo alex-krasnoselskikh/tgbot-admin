@@ -1,5 +1,9 @@
 // window.addEventListener('onload', loadInitialLogs());
 function loadLogsTable(logType) {
+  if (logType == "history") {
+    loadHistory();
+    return;
+  }
   const logsDisplay = document.getElementById("logs-display");
   logsDisplay.innerHTML = "";
 
