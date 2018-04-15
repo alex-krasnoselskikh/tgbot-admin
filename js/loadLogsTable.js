@@ -1,7 +1,7 @@
-// window.addEventListener('onload', loadInitial());
-function loadTable() {
-  const main = document.getElementById("main");
-  main.innerHTML = "";
+// window.addEventListener('onload', loadInitialLogs());
+function loadLogsTable(logType) {
+  const logsDisplay = document.getElementById("logs-display");
+  logsDisplay.innerHTML = "";
 
   const buttonsTop = document.createElement("div");
   buttonsTop.setAttribute("id", "buttons-top");
@@ -12,80 +12,81 @@ function loadTable() {
   const buttonsBottom = document.createElement("div");
   buttonsBottom.setAttribute("id", "buttons-bottom");
 
-  main.appendChild(buttonsTop);
-  main.appendChild(grid);
-  main.appendChild(buttonsBottom);
-  loadInitial();
+  logsDisplay.appendChild(buttonsTop);
+  logsDisplay.appendChild(grid);
+  logsDisplay.appendChild(buttonsBottom);
+  logsType = logType;
+  loadInitialLogs();
 }
 
-let
-  limit = 10,
-  currentPage = 1,
-  numberOfPagesTotal = 0;
+let limitLogs = 10,
+  currentPageLogs = 1,
+  numberOfPagesTotalLogs = 0;
+let logsType = 'auth';
 
-function loadInitial() {
-  fetch(`${usersUrl}list?limit=${limit}&offcet=0`)
+function loadInitialLogs() {
+  fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=0`)
     .then(res => res.json())
     .then(data => {
-      // const firstPageData = data.slice(0, limit);
-      drawButtons(data.total);
-      drawTable(data.list);
+      // const firstPageData = data.slice(0, limitLogs);
+      drawButtonsLogs(data.total);
+      drawTableLogs(data.list);
       console.log('total', data.total);
     })
     .catch(err => {
       console.log(err)
     });
 }
-function loadPage(pageNumber) {
-  fetch(`${usersUrl}list?limit=${limit}&offcet=${(pageNumber - 1) * limit}`)
+function loadPageLogs(pageNumber) {
+  fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
     .then(res => res.json())
     .then(data => {
       // const offset = (pageNumber - 1) * 10;
-      // const pageData = data.slice(offset, offset + limit);
+      // const pageData = data.slice(offset, offset + limitLogs);
       window.scroll({
-        top: 0, 
-        left: 0, 
-        behavior: 'instant' 
-       });
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
       document.getElementById("table").remove();
-      drawTable(data.list);
+      drawTableLogs(data.list);
     })
     .catch(err => {
       console.log(err)
     });
 }
 
-function drawPage(e) {
+function drawPageLogs(e) {
   const pageNumber = Number(e.target.innerHTML);
-  currentPage = pageNumber;
-  changeActivePageButton(pageNumber);
-  loadPage(pageNumber);
+  currentPageLogs = pageNumber;
+  changeActivePageButtonLogs(pageNumber);
+  loadPageLogs(pageNumber);
 }
 
-function drawNextPage() {
-  if (currentPage === numberOfPagesTotal) {
+function drawNextPageLogs() {
+  if (currentPageLogs === numberOfPagesTotalLogs) {
     return false;
   }
-  currentPage++;
-  loadPage(currentPage);
-  changeActivePageButton(currentPage);
+  currentPageLogs++;
+  loadPageLogs(currentPageLogs);
+  changeActivePageButtonLogs(currentPageLogs);
 }
 
-function drawPreviousPage() {
-  if (currentPage === 1) {
+function drawPreviousPageLogs() {
+  if (currentPageLogs === 1) {
     return false;
   }
-  currentPage--;
-  loadPage(currentPage);
-  changeActivePageButton(currentPage);
+  currentPageLogs--;
+  loadPageLogs(currentPageLogs);
+  changeActivePageButtonLogs(currentPageLogs);
 }
 
-function changeActivePageButton(buttonNumber) {
+function changeActivePageButtonLogs(buttonNumber) {
   const lis = [...document.querySelectorAll(".page-item")]
     .forEach(li => li.classList.remove("active"));
   const buttons = [...document.querySelectorAll(".page-link")];
-    buttons.filter(button => button.textContent == currentPage)
-      .forEach(button => button.parentElement.classList.add("active"));
+  buttons.filter(button => button.textContent == currentPage)
+    .forEach(button => button.parentElement.classList.add("active"));
   if (currentPage === 1) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
@@ -97,28 +98,28 @@ function changeActivePageButton(buttonNumber) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
-  if (currentPage === numberOfPagesTotal) {
+  if (currentPageLogs === numberOfPagesTotalLogs) {
     buttons.filter(button => button.textContent === "Next")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
 }
 
-function drawButtons(total) {
-  const quantity = Math.ceil(total / limit);
-  numberOfPagesTotal = quantity;
+function drawButtonsLogs(total) {
+  const quantity = Math.ceil(total / limitLogs);
+  numberOfPagesTotalLogs = quantity;
   const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
   const paginationTemplate = `
     <ul class="pagination justify-content-center">
       <li class="page-item button-previous disabled">
-        <button class="page-link" type="button" onclick="drawPreviousPage()">Previous</button>
+        <button class="page-link" type="button" onclick="drawPreviousPageLogs()">Previous</button>
       </li>
       ${buttons.map(button => `
         <li class="page-item ${button === 1 ? 'active' : ''}">
-          <button type="button" onclick="drawPage(event)" class="page-link">${button}</button>
+          <button type="button" onclick="drawPageLogs(event)" class="page-link">${button}</button>
         </li>`
-      ).join('')}
+    ).join('')}
       <li class="page-item button-next">
-        <button class="page-link" type="button" onclick="drawNextPage()">Next</button>
+        <button class="page-link" type="button" onclick="drawNextPageLogs()">Next</button>
       </li>
     </ul>
   `;
@@ -132,7 +133,7 @@ function drawButtons(total) {
   document.getElementById("buttons-bottom").appendChild(clone);
 }
 
-function drawTable(data) {
+function drawTableLogs(data) {
   const keys = Object.keys(data[0]);
   const tableTemplate = `
     <table class="table table-striped table-bordered table-sm">
