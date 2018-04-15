@@ -1,4 +1,3 @@
-// window.addEventListener('onload', loadInitial());
 function loadUsers() {
   const main = document.getElementById("main");
   main.innerHTML = "";
@@ -27,10 +26,8 @@ function loadInitial() {
   fetch(`${usersUrl}list?limit=${limit}&offcet=0`)
     .then(res => res.json())
     .then(data => {
-      // const firstPageData = data.slice(0, limit);
       drawButtons(data.total);
       drawTable(data.list);
-      // console.log('total', data.total);
     })
     .catch(err => {
       console.log(err)
@@ -40,15 +37,22 @@ function loadPage(pageNumber) {
   fetch(`${usersUrl}list?limit=${limit}&offcet=${(pageNumber - 1) * limit}`)
     .then(res => res.json())
     .then(data => {
-      // const offset = (pageNumber - 1) * 10;
-      // const pageData = data.slice(offset, offset + limit);
+      if (data.list.length === 0 && data.total > 0) {
+        loadPage(pageNumber - 1);
+        currentPage--;
+        drawButtons(data.total);
+        changeActivePageButton(currentPage);
+        return true;
+      }
       window.scroll({
         top: 0, 
         left: 0, 
         behavior: 'instant' 
        });
       document.getElementById("table").remove();
+      drawButtons(data.total);
       drawTable(data.list);
+      changeActivePageButton(currentPage);
     })
     .catch(err => {
       console.log(err)
@@ -126,15 +130,15 @@ function drawButtons(total) {
   div.setAttribute("id", "buttons");
   div.setAttribute("class", "d-flex flex-wrap justify-content-center");
   div.innerHTML = paginationTemplate;
-  // document.body.appendChild(div);
+  document.getElementById("buttons-top").innerHTML = "";
+  document.getElementById("buttons-bottom").innerHTML = "";
+
   document.getElementById("buttons-top").appendChild(div);
   const clone = div.cloneNode(true);
   document.getElementById("buttons-bottom").appendChild(clone);
 }
 
 function removeUser(userId) {
-  // console.log(e.target.parentElement.parentElement);
-  console.log(userId);
   fetch(`${usersUrl}${userId}`, {
     method: 'DELETE',
   })
@@ -142,13 +146,14 @@ function removeUser(userId) {
      if (response.status === 200
       || response.status === 202
       || response.status === 204) {
-        alert('Пользователь удалён');
+       alert('Пользователь удалён');
+       loadPage(currentPage);
       }
   })
   .catch(err => {
     alert('Ошибка')
     console.log(err);
-  });
+    });
 }
 
 function drawTable(data) {
@@ -177,6 +182,5 @@ function drawTable(data) {
   const div = document.createElement("div");
   div.setAttribute("id", "table");
   div.innerHTML = tableTemplate;
-  // document.body.appendChild(div);
   document.getElementById("grid").appendChild(div);
 }
