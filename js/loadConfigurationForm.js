@@ -5,6 +5,7 @@ function loadConfigurationForm() {
       <button class="tablinks" onclick="switchTab(event, 'config-autoanswer')">Автоответ</button>
       <button class="tablinks" onclick="switchTab(event, 'config-system')">Системные настройки</button>
       <button class="tablinks" onclick="switchTab(event, 'config-admins')">Администраторы</button>
+      <button class="tablinks" onclick="switchTab(event, 'config-spreadsheetlog')">Логи таблиц</button>
     </div>
 
     <div id="config-sources" class="tabcontent active">
@@ -119,6 +120,38 @@ function loadConfigurationForm() {
         </div>
         <br />
         <div id="admins-to-add" class="col-sm-10"></div>
+      </div>
+    </div>
+    <div id="config-spreadsheetlog" class="tabcontent">
+      <div class="spreadsheetlog">
+        <h3>Google-таблица с логами</h3>
+        <div class="form-group row ml-4">
+          <label for="log-id" class="col-sm-2 col-form-label">ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="log-id" id="log-id">
+          </div>
+        </div>
+
+        <div class="form-group row ml-4">
+          <label for="messages" class="col-sm-2 col-form-label">Сообщения</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="log-messages" id="log-messages">
+          </div>
+        </div>
+
+        <div class="form-group row ml-4">
+          <label for="errors" class="col-sm-2 col-form-label">Ошибки</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="log-errors" id="log-errors">
+          </div>
+        </div>
+
+        <div class="form-group row ml-4">
+          <label for="auths" class="col-sm-2 col-form-label">Авторизации</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="log-auths" id="log-auths">
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-sm-10">

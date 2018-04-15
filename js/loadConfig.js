@@ -7,7 +7,7 @@ function loadConfig() {
       loadTwilloValues(data.twillo);
       loadRestValues(data);
       loadAdmins(data.admins);
-      // loadLogs(data.spreadsheetLog);
+      loadLogs(data.spreadsheetLog);
     })
     .catch(err => {
       console.log(err);
@@ -35,12 +35,12 @@ function loadAdmins(admins) {
   });
 }
 
-// function loadLogs(logs) { 
-//   const keys = Object.keys(logs);
-//   keys.forEach(key => {
-//     document.getElementById(`log-${key}`).value = logs[key];
-//   });
-// }
+function loadLogs(logs) { 
+  const keys = Object.keys(logs);
+  keys.forEach(key => {
+    document.getElementById(`log-${key}`).value = logs[key];
+  });
+}
 
 function loadTables(tables) { // And Lists within
   tables.forEach(table => {
