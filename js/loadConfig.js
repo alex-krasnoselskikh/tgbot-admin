@@ -1,6 +1,6 @@
 window.addEventListener('onload', loadConfigurationForm());
 function loadConfig() {
-  fetch(url)
+  fetch(configUrl)
     .then(res => res.json())
     .then(data => {
       loadTables(data.spreadsheets);
