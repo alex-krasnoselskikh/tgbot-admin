@@ -132,8 +132,23 @@ function drawButtons(total) {
   document.getElementById("buttons-bottom").appendChild(clone);
 }
 
-function removeUser(e) {
-  console.log(e);
+function removeUser(userId) {
+  // console.log(e.target.parentElement.parentElement);
+  console.log(userId);
+  fetch(`${usersUrl}${userId}`, {
+    method: 'DELETE',
+  })
+  .then(response => {
+     if (response.status === 200
+      || response.status === 202
+      || response.status === 204) {
+        alert('Пользователь удалён');
+      }
+  })
+  .catch(err => {
+    alert('Ошибка')
+    console.log(err);
+  });
 }
 
 function drawTable(data) {
@@ -153,7 +168,7 @@ function drawTable(data) {
         <tr>
           ${keys.map(key => `<td>${entry[key] === null ? "" : entry[key]}</td>`).join('')}
           <td scope="col" class="text-center">
-            <button type="button" class="btn btn-danger" onclick="removeUser(event)">&#x274C</button>
+            <button type="button" class="btn btn-danger" onclick="removeUser(${entry.id})">&#x274C</button>
           </td>
         </tr>
       `).join('')}
