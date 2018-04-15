@@ -12,4 +12,5 @@ function drawLogsTabs() {
     <div id="logs-display"></div>
   `;
   document.getElementById("main").innerHTML = logsTabsTemplate;
+  loadLogsTable('auth');
 }
