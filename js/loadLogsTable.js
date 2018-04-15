@@ -23,7 +23,7 @@ function loadLogsTable(logType) {
   loadInitialLogs();
 }
 
-let limitLogs = 10,
+let limitLogs = 30,
   currentPageLogs = 1,
   numberOfPagesTotalLogs = 0;
 let logsType = 'auth';
@@ -35,7 +35,7 @@ function loadInitialLogs() {
       // const firstPageData = data.slice(0, limitLogs);
       drawButtonsLogs(data.total);
       drawTableLogs(data.list);
-      console.log('total', data.total);
+      // console.log('total', data.total);
     })
     .catch(err => {
       console.log(err)
@@ -45,8 +45,6 @@ function loadPageLogs(pageNumber) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
     .then(res => res.json())
     .then(data => {
-      // const offset = (pageNumber - 1) * 10;
-      // const pageData = data.slice(offset, offset + limitLogs);
       window.scroll({
         top: 0,
         left: 0,
@@ -63,6 +61,8 @@ function loadPageLogs(pageNumber) {
 function drawPageLogs(e) {
   const pageNumber = Number(e.target.innerHTML);
   currentPageLogs = pageNumber;
+  console.log('current page', currentPageLogs);
+  console.log('total pages', numberOfPagesTotalLogs);
   changeActivePageButtonLogs(pageNumber);
   loadPageLogs(pageNumber);
 }
@@ -86,23 +86,20 @@ function drawPreviousPageLogs() {
 }
 
 function changeActivePageButtonLogs(buttonNumber) {
-  const lis = [...document.querySelectorAll(".page-item")]
-    .forEach(li => li.classList.remove("active"));
+  const lis = [...document.querySelectorAll(".page-item")];
+  lis.forEach(li => li.classList.remove("active"));
+
   const buttons = [...document.querySelectorAll(".page-link")];
-  buttons.filter(button => button.textContent == currentPage)
+  buttons.filter(button => button.textContent == currentPageLogs)
     .forEach(button => button.parentElement.classList.add("active"));
-  if (currentPage === 1) {
-    buttons.filter(button => button.textContent === "Previous")
-      .forEach(button => button.parentElement.classList.add("disabled"));
-  }
   // Handle Previous and Next buttons 'disabled' class
   buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
     .forEach(button => button.parentElement.classList.remove("disabled"));
-  if (currentPage === 1) {
+  if (currentPageLogs === 1) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
-  if (currentPageLogs === numberOfPagesTotalLogs) {
+  if (currentPageLogs === numberOfPagesTotalLogs || numberOfPagesTotalLogs === 1) {
     buttons.filter(button => button.textContent === "Next")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
@@ -122,7 +119,7 @@ function drawButtonsLogs(total) {
           <button type="button" onclick="drawPageLogs(event)" class="page-link">${button}</button>
         </li>`
     ).join('')}
-      <li class="page-item button-next">
+      <li class="page-item button-next ${quantity === 1 ? 'disabled' : ''}">
         <button class="page-link" type="button" onclick="drawNextPageLogs()">Next</button>
       </li>
     </ul>

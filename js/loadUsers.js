@@ -90,18 +90,14 @@ function changeActivePageButton(buttonNumber) {
   const buttons = [...document.querySelectorAll(".page-link")];
     buttons.filter(button => button.textContent == currentPage)
       .forEach(button => button.parentElement.classList.add("active"));
-  if (currentPage === 1) {
-    buttons.filter(button => button.textContent === "Previous")
-      .forEach(button => button.parentElement.classList.add("disabled"));
-  }
-  // Handle Previous and Next buttons 'disabled' class
+   // Handle Previous and Next buttons 'disabled' class
   buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
     .forEach(button => button.parentElement.classList.remove("disabled"));
   if (currentPage === 1) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
-  if (currentPage === numberOfPagesTotal) {
+  if (currentPage === numberOfPagesTotal || numberOfPagesTotalLogs === 1) {
     buttons.filter(button => button.textContent === "Next")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
@@ -121,7 +117,7 @@ function drawButtons(total) {
           <button type="button" onclick="drawPage(event)" class="page-link">${button}</button>
         </li>`
       ).join('')}
-      <li class="page-item button-next">
+      <li class="page-item button-next ${quantity === 1 ? 'disabled' : ''}">
         <button class="page-link" type="button" onclick="drawNextPage()">Next</button>
       </li>
     </ul>
