@@ -23,7 +23,7 @@ let
   numberOfPagesTotal = 0;
 
 function loadInitial() {
-  fetch(`${usersUrl}list?limit=${limit}&offcet=0`)
+  fetch(`${usersUrl}list?limit=${limit}&offset=0`)
     .then(res => res.json())
     .then(data => {
       drawButtons(data.total);
@@ -34,7 +34,7 @@ function loadInitial() {
     });
 }
 function loadPage(pageNumber) {
-  fetch(`${usersUrl}list?limit=${limit}&offcet=${(pageNumber - 1) * limit}`)
+  fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`)
     .then(res => res.json())
     .then(data => {
       if (data.list.length === 0 && data.total > 0) {
