@@ -1,4 +1,3 @@
-// window.addEventListener('onload', loadInitialLogs());
 function loadLogsTable(logType) {
   if (logType == "history") {
     loadHistory();
@@ -20,7 +19,7 @@ function loadLogsTable(logType) {
   logsDisplay.appendChild(grid);
   logsDisplay.appendChild(buttonsBottom);
   logsType = logType;
-  loadInitialLogs();
+  loadPageLogs();
 }
 
 let limitLogs = 30,
@@ -28,20 +27,7 @@ let limitLogs = 30,
   numberOfPagesTotalLogs = 0;
 let logsType = 'auth';
 
-function loadInitialLogs() {
-  fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=0`)
-    .then(res => res.json())
-    .then(data => {
-      // const firstPageData = data.slice(0, limitLogs);
-      drawButtonsLogs(data.total);
-      drawTableLogs(data.list);
-      // console.log('total', data.total);
-    })
-    .catch(err => {
-      console.log(err)
-    });
-}
-function loadPageLogs(pageNumber) {
+function loadPageLogs(pageNumber = 1) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
     .then(res => res.json())
     .then(data => {
@@ -50,8 +36,9 @@ function loadPageLogs(pageNumber) {
         left: 0,
         behavior: 'instant'
       });
-      document.getElementById("table").remove();
+      drawButtonsLogs(data.total);
       drawTableLogs(data.list);
+      changeActivePageButtonLogs(currentPage);
     })
     .catch(err => {
       console.log(err)
@@ -61,8 +48,6 @@ function loadPageLogs(pageNumber) {
 function drawPageLogs(e) {
   const pageNumber = Number(e.target.innerHTML);
   currentPageLogs = pageNumber;
-  console.log('current page', currentPageLogs);
-  console.log('total pages', numberOfPagesTotalLogs);
   changeActivePageButtonLogs(pageNumber);
   loadPageLogs(pageNumber);
 }
@@ -128,7 +113,9 @@ function drawButtonsLogs(total) {
   div.setAttribute("id", "buttons");
   div.setAttribute("class", "d-flex flex-wrap justify-content-center");
   div.innerHTML = paginationTemplate;
-  // document.body.appendChild(div);
+  document.getElementById("buttons-top").innerHTML = "";
+  document.getElementById("buttons-bottom").innerHTML = "";
+
   document.getElementById("buttons-top").appendChild(div);
   const clone = div.cloneNode(true);
   document.getElementById("buttons-bottom").appendChild(clone);
@@ -153,9 +140,9 @@ function drawTableLogs(data) {
       `).join('')}
       </tbody>
     </table>`;
+  document.getElementById("grid").innerHTML = "";
   const div = document.createElement("div");
   div.setAttribute("id", "table");
   div.innerHTML = tableTemplate;
-  // document.body.appendChild(div);
   document.getElementById("grid").appendChild(div);
 }

@@ -1,7 +1,10 @@
 function loadHistory() { 
   const logsDisplay = document.getElementById("logs-display");
-  logsDisplay.innerHTML = "<label>Номер телефона </label> <input type='text' id='phoneForHistory'> </input> <input type='button' value='Загрузить' onclick='fetchHistory()'></input><div id='history-table'></div>";
-
+  logsDisplay.innerHTML = `
+    <label>Номер телефона</label>
+    <input type='text' id='phoneForHistory'></input>
+    <input type='button' value='Загрузить' onclick='fetchHistory()'></input>
+    <div id='history-table'></div>`;
 }
 
 let limitHistory = 20,
@@ -9,7 +12,7 @@ currentPageHistory = 1,
 numberOfPagesTotalHistory = 0;
 
 function fetchHistory() {
-  let phone = document.getElementById('phoneForHistory').value;
+  const phone = document.getElementById('phoneForHistory').value;
   fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitLogs}`)
   .then(res => res.json())
   .then(data => {
@@ -83,7 +86,7 @@ function drawButtonsHistory(total) {
           <button type="button" onclick="drawPageHistory(event)" class="page-link">${button}</button>
         </li>`
     ).join('')}
-      <li class="page-item button-next">
+      <li class="page-item button-next ${quantity === 1 ? 'disabled' : ''}">
         <button class="page-link" type="button" onclick="drawNextPageHistory()">Next</button>
       </li>
     </ul>
@@ -129,10 +132,6 @@ function changeActivePageButtonHistory(buttonNumber) {
   const buttons = [...document.querySelectorAll(".page-link")];
   buttons.filter(button => button.textContent == currentPage)
     .forEach(button => button.parentElement.classList.add("active"));
-  if (currentPage === 1) {
-    buttons.filter(button => button.textContent === "Previous")
-      .forEach(button => button.parentElement.classList.add("disabled"));
-  }
   // Handle Previous and Next buttons 'disabled' class
   buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
     .forEach(button => button.parentElement.classList.remove("disabled"));
