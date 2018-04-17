@@ -2,7 +2,7 @@ function loadHistory() {
   const logsDisplay = document.getElementById("logs-display");
   logsDisplay.innerHTML = `
     <label>Номер телефона</label>
-    <input type='text' id='phoneForHistory'></input>
+    <input type='text' id='phoneForHistory' value="lolidragon"></input>
     <input type='button' value='Загрузить' onclick='fetchHistory()'></input>
     <div id='history-table'></div>`;
 }
@@ -13,7 +13,7 @@ numberOfPagesTotalHistory = 0;
 
 function fetchHistory() {
   const phone = document.getElementById('phoneForHistory').value;
-  fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitLogs}`)
+  fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitHistory}`)
   .then(res => res.json())
   .then(data => {
     // const offset = (pageNumber - 1) * 10;
@@ -25,6 +25,7 @@ function fetchHistory() {
     });
     drawHistoryTable(data.list);
     drawButtonsHistory(data.total)
+    changeActivePageButtonHistory(currentPageHistory);
   })
   .catch(err => {
     console.log(err)
@@ -73,8 +74,8 @@ function drawHistoryTable(list) {
 }
 
 function drawButtonsHistory(total) {
-  const quantity = Math.ceil(total / limitLogs);
-  numberOfPagesTotalLogs = quantity;
+  const quantity = Math.ceil(total / limitHistory);
+  numberOfPagesTotalHistory = quantity;
   const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
   const paginationTemplate = `
     <ul class="pagination justify-content-center">
@@ -109,7 +110,7 @@ function drawPageHistory(e) {
 }
 
 function drawNextPageHistory() {
-  if (currentPageHistory === numberOfPagesTotalLogs) {
+  if (currentPageHistory === numberOfPagesTotalHistory) {
     return false;
   }
   currentPageHistory++;
@@ -130,16 +131,16 @@ function changeActivePageButtonHistory(buttonNumber) {
   const lis = [...document.querySelectorAll(".page-item")]
     .forEach(li => li.classList.remove("active"));
   const buttons = [...document.querySelectorAll(".page-link")];
-  buttons.filter(button => button.textContent == currentPage)
+  buttons.filter(button => button.textContent == currentPageHistory)
     .forEach(button => button.parentElement.classList.add("active"));
   // Handle Previous and Next buttons 'disabled' class
   buttons.filter(button => button.textContent === "Previous" || button.textContent === "Next")
     .forEach(button => button.parentElement.classList.remove("disabled"));
-  if (currentPage === 1) {
+  if (currentPageHistory === 1) {
     buttons.filter(button => button.textContent === "Previous")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
-  if (currentPageLogs === numberOfPagesTotalLogs) {
+  if (currentPageHistory === numberOfPagesTotalHistory) {
     buttons.filter(button => button.textContent === "Next")
       .forEach(button => button.parentElement.classList.add("disabled"));
   }
