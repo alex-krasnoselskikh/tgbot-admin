@@ -2,7 +2,7 @@ function loadHistory() {
   const logsDisplay = document.getElementById("logs-display");
   logsDisplay.innerHTML = `
     <label>Номер телефона</label>
-    <input type='text' id='phoneForHistory' value="lolidragon"></input>
+    <input type='text' id='phoneForHistory' value=""></input>
     <input type='button' value='Загрузить' onclick='fetchHistory()'></input>
     <div id='history-table'></div>`;
 }
@@ -16,8 +16,9 @@ function fetchHistory() {
   fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitHistory}`)
   .then(res => res.json())
   .then(data => {
-    // const offset = (pageNumber - 1) * 10;
-    // const pageData = data.slice(offset, offset + limitLogs);
+    if (data.total === 0) {
+      return false;
+    }
     window.scroll({
       top: 0,
       left: 0,

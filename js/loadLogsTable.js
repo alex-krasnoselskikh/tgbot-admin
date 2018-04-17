@@ -22,7 +22,7 @@ function loadLogsTable(logType) {
   loadPageLogs();
 }
 
-let limitLogs = 30,
+let limitLogs = 20,
   currentPageLogs = 1,
   numberOfPagesTotalLogs = 0;
 let logsType = 'auth';
@@ -31,6 +31,9 @@ function loadPageLogs(pageNumber = 1) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
     .then(res => res.json())
     .then(data => {
+      if (data.total === 0) {
+        return false;
+      }
       window.scroll({
         top: 0,
         left: 0,

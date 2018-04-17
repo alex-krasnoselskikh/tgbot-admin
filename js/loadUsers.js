@@ -26,6 +26,9 @@ function loadPage(pageNumber = 1) {
   fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`)
     .then(res => res.json())
     .then(data => {
+      if (data.total === 0) {
+        return false;
+      }
       if (data.list.length === 0 && data.total > 0) {
         loadPage(pageNumber - 1);
         currentPage--;
