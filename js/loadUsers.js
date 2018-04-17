@@ -14,7 +14,7 @@ function loadUsers() {
   main.appendChild(buttonsTop);
   main.appendChild(grid);
   main.appendChild(buttonsBottom);
-  loadInitial();
+  loadPage();
 }
 
 let
@@ -22,18 +22,7 @@ let
   currentPage = 1,
   numberOfPagesTotal = 0;
 
-function loadInitial() {
-  fetch(`${usersUrl}list?limit=${limit}&offset=0`)
-    .then(res => res.json())
-    .then(data => {
-      drawButtons(data.total);
-      drawTable(data.list);
-    })
-    .catch(err => {
-      console.log(err)
-    });
-}
-function loadPage(pageNumber) {
+function loadPage(pageNumber = 1) {
   fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`)
     .then(res => res.json())
     .then(data => {
@@ -49,7 +38,7 @@ function loadPage(pageNumber) {
         left: 0, 
         behavior: 'instant' 
        });
-      document.getElementById("table").remove();
+      // document.getElementById("table").remove();
       drawButtons(data.total);
       drawTable(data.list);
       changeActivePageButton(currentPage);
@@ -175,6 +164,7 @@ function drawTable(data) {
       `).join('')}
       </tbody>
     </table>`;
+  document.getElementById("grid").innerHTML = "";
   const div = document.createElement("div");
   div.setAttribute("id", "table");
   div.innerHTML = tableTemplate;
