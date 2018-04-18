@@ -77,14 +77,15 @@ function drawHistoryTable(list) {
 function drawButtonsHistory(total) {
   const quantity = Math.ceil(total / limitHistory);
   numberOfPagesTotalHistory = quantity;
-  const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
+  // const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
+  const buttons = simplePagination(currentPageLogs, quantity);
   const paginationTemplate = `
     <ul class="pagination justify-content-center">
       <li class="page-item button-previous disabled">
         <button class="page-link" type="button" onclick="drawPreviousPageHistory()">Previous</button>
       </li>
       ${buttons.map(button => `
-        <li class="page-item ${button === 1 ? 'active' : ''}">
+        <li class="page-item ${button === 1 ? 'active' : ''} ${button === '...' ? ' disabled' : ''}">
           <button type="button" onclick="drawPageHistory(event)" class="page-link">${button}</button>
         </li>`
     ).join('')}
