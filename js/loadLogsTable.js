@@ -1,4 +1,4 @@
-function loadLogsTable(logType) {
+function loadLogsTable(logType = 'auth') {
   if (logType == "history") {
     loadHistory();
     return;
@@ -19,13 +19,14 @@ function loadLogsTable(logType) {
   logsDisplay.appendChild(grid);
   logsDisplay.appendChild(buttonsBottom);
   logsType = logType;
+  currentPageLogs = 1;
   loadPageLogs();
 }
 
 let limitLogs = 20,
   currentPageLogs = 1,
   numberOfPagesTotalLogs = 0;
-let logsType = 'auth';
+// let logsType = 'auth';
 
 function loadPageLogs(pageNumber = 1) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
@@ -41,7 +42,7 @@ function loadPageLogs(pageNumber = 1) {
       });
       drawButtonsLogs(data.total);
       drawTableLogs(data.list);
-      changeActivePageButtonLogs(currentPage);
+      changeActivePageButtonLogs(currentPageLogs);
     })
     .catch(err => {
       console.log(err)
