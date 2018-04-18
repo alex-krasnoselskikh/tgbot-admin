@@ -14,6 +14,7 @@ function loadUsers() {
   main.appendChild(buttonsTop);
   main.appendChild(grid);
   main.appendChild(buttonsBottom);
+  currentPage = 1
   loadPage();
 }
 
