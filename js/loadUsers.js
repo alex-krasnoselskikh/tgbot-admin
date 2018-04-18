@@ -1,6 +1,24 @@
 function loadUsers() {
   const main = document.getElementById("main");
-  main.innerHTML = `<h3 class="ml-3">Пользователи</h3>`;
+  main.innerHTML = `
+    <h3 class="ml-3">Пользователи</h3>
+    <div class="form-group row ml-3">
+    <label for="how-many-users-display" class="col-sm-2 col-form-label">Отображать</label>
+    <div class="col-sm-10">
+      <select
+       class="form-control col-sm-2"
+       id="how-many-users-display"
+       onchange="changeLimit(this.value)">
+        <option>10</option>
+        <option>20</option>
+        <option>30</option>
+        <option>50</option>
+        <option>100</option>
+        <option>Все</option>
+      </select>
+    </div>
+  </div>
+  `;
 
   const buttonsTop = document.createElement("div");
   buttonsTop.setAttribute("id", "buttons-top");
@@ -14,6 +32,7 @@ function loadUsers() {
   main.appendChild(buttonsTop);
   main.appendChild(grid);
   main.appendChild(buttonsBottom);
+  limit = 10;
   currentPage = 1
   loadPage();
 }
@@ -22,6 +41,26 @@ let
   limit = 10,
   currentPage = 1,
   numberOfPagesTotal = 0;
+
+function changeLimit(newLimit) {
+  if (newLimit === 'Все') {
+    fetch(`${usersUrl}list?limit=1&offset=0`)
+      .then(res => res.json())
+      .then(data => {
+        limit = data.total;
+        currentPage = 1;
+        loadPage();
+        drawButtons();
+        return true;
+      })
+      .catch(err => console.log(err));
+    return;
+  }
+  limit = Number(newLimit);
+  currentPage = 1;
+  loadPage();
+  drawButtons();
+}
 
 function loadPage(pageNumber = 1) {
   fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`)
