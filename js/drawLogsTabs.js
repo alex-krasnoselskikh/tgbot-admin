@@ -1,6 +1,6 @@
 function drawLogsTabs() {
   const logsTabsTemplate = `
-    <h3>Логи</h3>
+    <h3 class="ml-3">Логи</h3>
     <div class="tab">
       <button class="tablinks active" onclick="switchLogs(event, 'auth')">Авторизации</button>
       <button class="tablinks" onclick="switchLogs(event, 'outgoing')">Исходящие</button>

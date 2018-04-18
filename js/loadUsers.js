@@ -1,6 +1,6 @@
 function loadUsers() {
   const main = document.getElementById("main");
-  main.innerHTML = "";
+  main.innerHTML = `<h3 class="ml-3">Пользователи</h3>`;
 
   const buttonsTop = document.createElement("div");
   buttonsTop.setAttribute("id", "buttons-top");
