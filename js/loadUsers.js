@@ -214,3 +214,5 @@ function drawTable(data) {
   div.innerHTML = tableTemplate;
   document.getElementById("grid").appendChild(div);
 }
+
+// test
