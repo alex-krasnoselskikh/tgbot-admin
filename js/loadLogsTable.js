@@ -152,8 +152,8 @@ function drawButtonsLogs(total) {
 function drawTableLogs(data) {
   if (data.length === 0) {
     document.getElementById("grid").innerHTML = `<h4 class="text-danger text-center">Нет данных</h4>`;
-    document.getElementById("buttons-top").remove();
-    document.getElementById("buttons-bottom").remove();
+    document.getElementById("buttons-top").innerHTML = "";
+    document.getElementById("buttons-bottom").innerHTML= "";
     return;
   }
   const keys = Object.keys(data[0] || 0);
