@@ -37,9 +37,9 @@ function fetchHistory() {
   fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitHistory}`)
   .then(res => res.json())
   .then(data => {
-    if (data.total === 0) {
-      return false;
-    }
+    // if (data.total === 0) {
+    //   return false;
+    // }
     window.scroll({
       top: 0,
       left: 0,
@@ -69,6 +69,13 @@ function drawHistoryTable(list) {
   historyContainer.appendChild(buttonsTop);
   historyContainer.appendChild(grid);
   historyContainer.appendChild(buttonsBottom);
+
+  if (list.length === 0) {
+    document.getElementById("grid").innerHTML = `<h4 class="text-danger text-center">Пользователь не найден</h4>`;
+    // document.getElementById("buttons-top").innerHTML = "";
+    // document.getElementById("buttons-bottom").innerHTML ="";
+    return;
+  }
 
   const keys = Object.keys(list[0]);
   const tableTemplate = `

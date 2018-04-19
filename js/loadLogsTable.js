@@ -53,9 +53,9 @@ function loadPageLogs(pageNumber = 1) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
     .then(res => res.json())
     .then(data => {
-      if (data.total === 0) {
-        return false;
-      }
+      // if (data.total === 0) {
+      //   return false;
+      // }
       window.scroll({
         top: 0,
         left: 0,
@@ -150,7 +150,13 @@ function drawButtonsLogs(total) {
 }
 
 function drawTableLogs(data) {
-  const keys = Object.keys(data[0]);
+  if (data.length === 0) {
+    document.getElementById("grid").innerHTML = `<h4 class="text-danger text-center">Нет данных</h4>`;
+    document.getElementById("buttons-top").remove();
+    document.getElementById("buttons-bottom").remove();
+    return;
+  }
+  const keys = Object.keys(data[0] || 0);
   const tableTemplate = `
     <table class="table table-striped table-bordered table-sm">
       <thead class="thead-dark">
