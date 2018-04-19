@@ -3,6 +3,7 @@ function loadLogsTable(logType = 'auth') {
     loadHistory();
     return;
   }
+  document.getElementById("how-many-logs-display").setAttribute("onChange", "changeLimitLogs(this.value)");
   const logsDisplay = document.getElementById("logs-display");
   logsDisplay.innerHTML = "";
 
@@ -26,7 +27,27 @@ function loadLogsTable(logType = 'auth') {
 let limitLogs = 20,
   currentPageLogs = 1,
   numberOfPagesTotalLogs = 0;
-// let logsType = 'auth';
+let logsType = 'auth';
+
+function changeLimitLogs(newLimitLogs) {
+  if (newLimitLogs === 'Все') {
+    fetch(`${logsUrl}${logsType}?limit=1&offset=0`)
+      .then(res => res.json())
+      .then(data => {
+        limitLogs = data.total;
+        currentPageLogs = 1;
+        loadPageLogs();
+        drawButtonsLogs();
+        return true;
+      })
+      .catch(err => console.log(err));
+    return;
+  }
+  limitLogs = Number(newLimitLogs);
+  currentPageLogs = 1;
+  loadPageLogs();
+  drawButtonsLogs();
+}
 
 function loadPageLogs(pageNumber = 1) {
   fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)

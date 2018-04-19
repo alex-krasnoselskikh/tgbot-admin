@@ -5,11 +5,32 @@ function loadHistory() {
     <input type='text' id='phoneForHistory' value=""></input>
     <input type='button' value='Загрузить' onclick='fetchHistory()'></input>
     <div id='history-table'></div>`;
+    document.getElementById("how-many-logs-display").setAttribute("onChange", "changeLimitHistory(this.value)");
 }
 
 let limitHistory = 20,
 currentPageHistory = 1,
 numberOfPagesTotalHistory = 0;
+
+function changeLimitHistory(newLimitHistory) {
+  if (newLimitHistory === 'Все') {
+    fetch(`${logsUrl}user/${phone}?limit=1&offset=0`)
+      .then(res => res.json())
+      .then(data => {
+        limitLogsHistory = data.total;
+        currentPageHistory = 1;
+        loadPageHistory();
+        drawButtonsHistory();
+        return true;
+      })
+      .catch(err => console.log(err));
+    return;
+  }
+  limitHistory = Number(newLimitHistory);
+  currentPageHistory = 1;
+  loadPageHistory();
+  drawButtonsHistory();
+}
 
 function fetchHistory() {
   const phone = document.getElementById('phoneForHistory').value;

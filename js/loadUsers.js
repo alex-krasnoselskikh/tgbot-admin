@@ -3,21 +3,23 @@ function loadUsers() {
   main.innerHTML = `
     <h3 class="ml-3">Пользователи</h3>
     <div class="form-group row ml-3">
-    <label for="how-many-users-display" class="col-sm-2 col-form-label">Отображать</label>
-    <div class="col-sm-10">
-      <select
-       class="form-control col-sm-2"
-       id="how-many-users-display"
-       onchange="changeLimit(this.value)">
-        <option>10</option>
-        <option>20</option>
-        <option>30</option>
-        <option>50</option>
-        <option>100</option>
-        <option>Все</option>
-      </select>
+      <div class="input-group-prepend">
+        <div class="input-group-text">Отображать</div>
+      </div>
+      <div class="col-sm-10 p-0">
+        <select
+        class="form-control col-sm-2"
+        id="how-many-users-display"
+        onchange="changeLimit(this.value)">
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>50</option>
+          <option>100</option>
+          <option>Все</option>
+        </select>
+      </div>
     </div>
-  </div>
   `;
 
   const buttonsTop = document.createElement("div");
