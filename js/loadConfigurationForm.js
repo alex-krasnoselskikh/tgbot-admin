@@ -1,5 +1,6 @@
 function loadConfigurationForm() {
   const templateConfigurationForm = `
+  <h3>TECT</h3>
   <div class="tab">
       <button class="tablinks" id="tabDefaultOpen" onclick="switchTab(event, 'config-sources')">Источники</button>
       <button class="tablinks" onclick="switchTab(event, 'config-autoanswer')">Автоответ</button>
