@@ -61,8 +61,19 @@ function changeLimitLogs(newLimitLogs) {
 }
 
 function loadPageLogs(pageNumber = 1) {
-  fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`)
-    .then(res => res.json())
+  fetch(`${logsUrl}${logsType}?limit=${limitLogs}&offset=${(pageNumber - 1) * limitLogs}`, {
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+    }
+  }).then(function(res){ 
+      if (res.status === 401) {
+        // 401 returned from server
+        window.location = 'login.html';
+        throw new Error('Unauth!');
+       } else {
+        return res.json();
+       }
+    })
     .then(data => {
       // if (data.total === 0) {
       //   return false;

@@ -45,8 +45,19 @@ function changeLimitHistory(newLimitHistory) {
 
 function fetchHistory() {
   const phone = document.getElementById('phoneForHistory').value;
-  fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitHistory}`)
-  .then(res => res.json())
+  fetch(`${logsUrl}user/${phone}?limit=${limitHistory}&offset=${(currentPageHistory - 1) * limitHistory}`, {
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+    }
+  }).then(function(res){ 
+      if (res.status === 401) {
+        // 401 returned from server
+        window.location = 'login.html';
+        throw new Error('Unauth!');
+       } else {
+        return res.json();
+       }
+    })
   .then(data => {
     // if (data.total === 0) {
     //   return false;

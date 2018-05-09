@@ -76,8 +76,19 @@ function changeLimit(newLimit) {
 }
 
 function loadPage(pageNumber = 1) {
-  fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`)
-    .then(res => res.json())
+  fetch(`${usersUrl}list?limit=${limit}&offset=${(pageNumber - 1) * limit}`, {
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+    }
+  }).then(function(res){ 
+      if (res.status === 401) {
+        // 401 returned from server
+        window.location = 'login.html';
+        throw new Error('Unauth!');
+       } else {
+        return res.json();
+       }
+    })
     .then(data => {
       if (data.total === 0) {
         return false;
@@ -183,6 +194,9 @@ function drawButtons(total) {
 function removeUser(userId) {
   fetch(`${usersUrl}${userId}`, {
     method: 'DELETE',
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+    }
   })
   .then(response => {
      if (response.status === 200
@@ -190,7 +204,11 @@ function removeUser(userId) {
       || response.status === 204) {
        alert('Пользователь удалён');
        loadPage(currentPage);
-      }
+     }
+    if (response.status === 401) {
+      // 401 returned from server
+      window.location = 'login.html';
+    } 
   })
   .catch(err => {
     alert('Ошибка')
