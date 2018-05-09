@@ -1,7 +1,18 @@
 window.addEventListener('onload', loadConfigurationForm());
 function loadConfig() {
-  fetch(configUrl)
-    .then(res => res.json())
+  fetch(configUrl, {
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+    }
+  }).then(function(res){ 
+      if (res.status === 401) {
+        // 401 returned from server
+        window.location = 'login.html';
+        throw new Error('Unauth!');
+       } else {
+        return res.json();
+       }
+    })
     .then(data => {
       loadTables(data.spreadsheets);
       loadTwilloValues(data.twillo);

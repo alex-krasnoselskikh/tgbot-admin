@@ -31,8 +31,19 @@ let logsType = 'auth';
 
 function changeLimitLogs(newLimitLogs) {
   if (newLimitLogs === 'Все') {
-    fetch(`${logsUrl}${logsType}?limit=1&offset=0`)
-      .then(res => res.json())
+    fetch(`${logsUrl}${logsType}?limit=1&offset=0`, {
+      headers: {
+        'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+      }
+    }).then(function(res){ 
+        if (res.status === 401) {
+          // 401 returned from server
+          window.location = 'login.html';
+          throw new Error('Unauth!');
+         } else {
+          return res.json();
+         }
+      })
       .then(data => {
         limitLogs = data.total;
         currentPageLogs = 1;

@@ -14,8 +14,19 @@ numberOfPagesTotalHistory = 0;
 
 function changeLimitHistory(newLimitHistory) {
   if (newLimitHistory === 'Все') {
-    fetch(`${logsUrl}user/${phone}?limit=1&offset=0`)
-      .then(res => res.json())
+    fetch(`${logsUrl}user/${phone}?limit=1&offset=0`, {
+      headers: {
+        'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+      }
+    }).then(function(res){ 
+        if (res.status === 401) {
+          // 401 returned from server
+          window.location = 'login.html';
+          throw new Error('Unauth!');
+         } else {
+          return res.json();
+         }
+      })
       .then(data => {
         limitLogsHistory = data.total;
         currentPageHistory = 1;

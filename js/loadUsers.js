@@ -46,8 +46,19 @@ let
 
 function changeLimit(newLimit) {
   if (newLimit === 'Все') {
-    fetch(`${usersUrl}list?limit=1&offset=0`)
-      .then(res => res.json())
+    fetch(`${usersUrl}list?limit=1&offset=0`, {
+      headers: {
+        'Authorization': "Bearer " + sessionStorage.getItem(tokenKey)
+      }
+    }).then(function(res){ 
+        if (res.status === 401) {
+          // 401 returned from server
+          window.location = 'login.html';
+          throw new Error('Unauth!');
+         } else {
+          return res.json();
+         }
+      })
       .then(data => {
         limit = data.total;
         currentPage = 1;
