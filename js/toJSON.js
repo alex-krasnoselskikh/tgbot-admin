@@ -34,7 +34,10 @@ function toJSON() {
 
   fetch(configUrl, {
     method: 'PUT',
-    headers: new Headers({'content-type': 'application/json'}),
+    headers: {
+      'Authorization': "Bearer " + sessionStorage.getItem(tokenKey),
+      'content-type': 'application/json'
+    },
     body: JSON.stringify(obj)
   })
     .then(response => { 
