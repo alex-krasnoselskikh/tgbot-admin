@@ -163,7 +163,7 @@ function drawButtons(total) {
   const quantity = Math.ceil(total / limit);
   numberOfPagesTotal = quantity;
   // const buttons = Array.from(new Array(quantity), (val, index) => index + 1);
-  const buttons = simplePagination(currentPageLogs, quantity);
+  const buttons = simplePagination(currentPage, quantity);
   const paginationTemplate = `
     <ul class="pagination justify-content-center">
       <li class="page-item button-previous disabled">
